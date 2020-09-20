@@ -1,0 +1,21 @@
+{
+    "Image": [
+        "Multimedia/Image",
+        "Test/.com"
+    ],
+    "Document": [
+        "Multimedia/Document",
+        "Test/.com"
+    ],
+    "Video": [
+        "Multimedia/Video",
+        "Test/.com"
+    ],
+    "Musique": [
+        "Multimedia/Musique",
+        "Test/.com"
+    ],
+    "YouTube": [
+
+    ]
+}
