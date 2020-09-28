@@ -5,11 +5,14 @@ var bodyParser = require('body-parser')
 let routeur = require('./router.js');
 
 let message = "Serveur : ";
-let pathname = "";
+let pathname
 let nbreq = 0;
 
+/**
+ * 
+ * @param {*} port Port a déffinir dans l'index
+ */
 function start(port) {
-    //console.log(app.request.originalUrl);
     app.use(function WaitOnRequest(req, res, next) {
         pathname = req.url;
         console.log("       ");
@@ -18,23 +21,24 @@ function start(port) {
         app.set("Views")
         app.set('view engine', 'ejs')
 
-        app.use(express.static("Css"));
-        app.use(express.static("media-site"));
-        app.use(express.static("JavaScript"));
+        //Dossier de fichiers static
+        app.use(express.static("Public"));
         app.use(bodyParser.urlencoded({ extended: true }));
 
+        //Demmande en GET
         app.get("*", (request, response) => {
             console.log("       ");
             console.log("Serveur get : pathname : " + pathname + " nbreq:" + nbreq);
             routeur.router(request, response, pathname, nbreq++);
         });
-
+        //Demmande en POST
         app.post("*", (request, response) => {
             console.log("       ");
             console.log("Serveur post : " + " nbreq:" + nbreq);
             routeur.router(request, response, pathname, nbreq++);
         });
 
+        //Gestion redirection
         function handleRedirect(req, res) {
             const targetUrl = targetBaseUrl + req.originalUrl;
             res.redirect(targetUrl);
