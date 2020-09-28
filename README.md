@@ -10,13 +10,13 @@ Il est avantageux pour quiconque voudrait créer rapidement qu'elle page ou bien
 Il n'est pas recommander de l'utiliser comme serveur de Prod mais seulement de Dev.
 
 # Package utiliser
--body-parser
--child_process
--ejs
--express
--favicon
--fs-extra
--mocha
+* body-parser /n
+* child_process
+* ejs
+* express
+* favicon
+* fs-extra
+ *mocha
 
 # Quelle t'il possble de faire avec RapideNodeJS ?
 -Créer un site en utilisant le model MVC.
