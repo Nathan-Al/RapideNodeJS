@@ -1,2 +1,1 @@
-npm run start
-pause
+node ServExpress/index.js
