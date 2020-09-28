@@ -28,7 +28,7 @@ Il s'ouvre simplement en double cliquant dessus ou en tapant son nom dans un CMD
 (n'oublier pas de vous situer dans le dossier principale pour le lancer).
 
 # Commande utilisable
-* p ou New Page
+* np ou New Page
 Vous permet de générer le controller, la vue, le css
 vous avez deux options. 
 1°) Default
