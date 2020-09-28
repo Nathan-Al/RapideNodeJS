@@ -4,12 +4,12 @@ Serveur basic Node JS Utilisant ExpresseJS
 # Première version de RapideNodeJS utilisant ExpressJS
 Version actuelle 0.0.1
 
-#Possiblité de RapideNodeJS :
+# Possiblité de RapideNodeJS :
 RapideNodeJS est juste un serveur basique utilisant Node JS.
 Il est avantageux pour quiconque voudrait créer rapidement qu'elle page ou bien voudrait un support de départ pour son propre serveur NodeJS.
 Il n'est pas recommander de l'utiliser comme serveur de Prod mais seulement de Dev.
 
-#Package utiliser
+# Package utiliser
 -body-parser
 -child_process
 -ejs
@@ -18,7 +18,7 @@ Il n'est pas recommander de l'utiliser comme serveur de Prod mais seulement de D
 -fs-extra
 -mocha
 
-#Quelle t'il possble de faire avec RapideNodeJS ?
+# Quelle t'il possble de faire avec RapideNodeJS ?
 -Créer un site en utilisant le model MVC.
 -Créer rapidement une page son css ainsi que son controller grâce au l'utilitaire Teta.
 -Choisir l'url que l'on veut pour sa page ou même en mettre plusieurs.
@@ -27,7 +27,7 @@ Teta est l'utilitaire qui vous permet de générer les fichiers t'elle que le co
 Il s'ouvre simplement en double cliquant dessus ou en tapant son nom dans un CMD : Teta ou .\Teta via powershell
 (n'oublier pas de vous situer dans le dossier principale pour le lancer).
 
-#Commande utilisable
+# Commande utilisable
 -np ou New Page
 Vous permet de générer le controller, la vue, le css
 vous avez deux options. 
@@ -79,6 +79,6 @@ you have two options.
 2 °) customize
  -You will be able to choose the name of the controller, the view and the css as well as the or the url.
  
- / *
- * Note: this project is still in progress at the time it is 27/09/2020
- * /
+ /*
+ *Note: this project is still in progress at the time it is 27/09/2020
+ */
