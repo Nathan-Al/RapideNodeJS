@@ -10,31 +10,31 @@ Il est avantageux pour quiconque voudrait créer rapidement qu'elle page ou bien
 Il n'est pas recommander de l'utiliser comme serveur de Prod mais seulement de Dev.
 
 # Package utiliser
-* body-parser /n
+* body-parser
 * child_process
 * ejs
 * express
 * favicon
 * fs-extra
- *mocha
+* mocha
 
 # Quelle t'il possble de faire avec RapideNodeJS ?
--Créer un site en utilisant le model MVC.
--Créer rapidement une page son css ainsi que son controller grâce au l'utilitaire Teta.
--Choisir l'url que l'on veut pour sa page ou même en mettre plusieurs.
+* Créer un site en utilisant le model MVC.
+* Créer rapidement une page son css ainsi que son controller grâce au l'utilitaire Teta.
+ *Choisir l'url que l'on veut pour sa page ou même en mettre plusieurs.
 
 Teta est l'utilitaire qui vous permet de générer les fichiers t'elle que le controller, la vue, le css et de choisir l'url attribuer a la page.
 Il s'ouvre simplement en double cliquant dessus ou en tapant son nom dans un CMD : Teta ou .\Teta via powershell
 (n'oublier pas de vous situer dans le dossier principale pour le lancer).
 
 # Commande utilisable
--np ou New Page
+* p ou New Page
 Vous permet de générer le controller, la vue, le css
 vous avez deux options. 
 1°) Default
- -Vous donner un nom et il sera attribuer a tout les fichiers ainsi qu'a l'url.
+ * Vous donner un nom et il sera attribuer a tout les fichiers ainsi qu'a l'url.
 2°) personnaliser
- -Vous pourrez choisir le nom du controller, de la vue et du css ainsi que des ou de l'url.
+ * Vous pourrez choisir le nom du controller, de la vue et du css ainsi que des ou de l'url.
  
  /*
  *Note : ce projet est toujours en cour a l'heure qu'il est 27/09/2020
@@ -53,31 +53,31 @@ It is beneficial for anyone who would like to quickly create their own page or w
 It is not recommended to use it as Prod server but only Dev server.
 
 #Package use
--body-parser
--child_process
--ejs
--express
--favicon
--fs-extra
--mocha
+* body-parser
+* child_process
+* ejs
+* express
+* favicon
+* fs-extra
+* mocha
 
 #What can you do with RapideNodeJS?
--Create a site using the MVC model.
-- Quickly create a page its css as well as its controller thanks to the utility Teta.
--Choose the url you want for your page or even put several.
+* Create a site using the MVC model.
+* Quickly create a page its css as well as its controller thanks to the utility Teta.
+* Choose the url you want for your page or even put several.
 
 Teta is the utility which allows you to generate files like the controller, view, css and choose the url to assign to the page.
 It simply opens by double clicking on it or typing its name in a CMD: Teta or. \ Teta via powershell
 (don't forget to be in the main folder to launch it).
 
 #Command usable
--np or New Page
+* np or New Page
 Allows you to generate the controller, view, css
 you have two options.
 1 °) Default
- -Give you a name and it will be assigned to all the files as well as to the url.
+ * Give you a name and it will be assigned to all the files as well as to the url.
 2 °) customize
- -You will be able to choose the name of the controller, the view and the css as well as the or the url.
+ * You will be able to choose the name of the controller, the view and the css as well as the or the url.
  
  /*
  *Note: this project is still in progress at the time it is 27/09/2020
