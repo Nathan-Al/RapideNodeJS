@@ -15,7 +15,30 @@
         <%= PageTitle %>
     </h1>
     <div class="conteneur">
-        <h1>CORPS</h1>
+        <h1>CORP</h1>
+        <p>
+            <%= Controller.weirdquestion %>
+        </p>
+        <div style="width: auto; height:auto;">
+            <p>POST</p>
+            <%= Controller.dataPost %>
+        </div>
+        <form action="" method="post">
+            <input type="hidden" name="openthedoor" value="Close the door ! I playing Minecraft !">
+            <input type="submit" value="Repondre">
+        </form>
+        <div style="width: auto; height:auto;">
+            <p>GET</p>
+            <% if(Controller.data!=null) {%>
+                <%= Controller.dataGet.info %>
+                    <%
+                };
+            %>
+        </div>
+        <form action="" method="get">
+            <input type="hidden" name="seetheson" value="That a good story son !">
+            <input type="submit" value="Repondre">
+        </form>
     </div>
 </body>
 

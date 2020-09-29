@@ -120,6 +120,15 @@
    "Views": "mui",
    "Controller": "mui",
    "css": "mui"
+  },
+  {
+   "name": "test1",
+   "liens": [
+    "test1"
+   ],
+   "Views": "test1",
+   "Controller": "test1",
+   "css": "test1"
   }
  ]
 }
