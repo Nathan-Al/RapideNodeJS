@@ -18,7 +18,7 @@ Il n'est pas recommander de l'utiliser comme serveur de Prod mais seulement de D
 * fs-extra
 * mocha
 
-## Quelle t'il possble de faire avec RapideNodeJS ?
+## Quelle t'il possible de faire avec RapideNodeJS ?
 * Créer un site en utilisant le model MVC.
 * Créer rapidement une page son css ainsi que son controller grâce au l'utilitaire Teta.
  *Choisir l'url que l'on veut pour sa page ou même en mettre plusieurs.
