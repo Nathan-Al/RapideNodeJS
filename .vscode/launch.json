@@ -11,7 +11,7 @@
                 "--timeout",
                 "999999",
                 "--colors",
-                "${workspaceFolder}/Views/"
+                "${workspaceFolder}/ServExpress/index.js"
             ],
             "internalConsoleOptions": "openOnSessionStart",
             "name": "Mocha Tests",
@@ -29,7 +29,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\test\\index.js"
+            "program": "${workspaceFolder}\\ServExpress\\index.js"
         }
     ]
 }

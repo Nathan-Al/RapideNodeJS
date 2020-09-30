@@ -1,5 +1,5 @@
-let http = require('http');
-let express = require('express');
+const http = require('http');
+const express = require('express');
 let app = express();
 var bodyParser = require('body-parser')
 let routeur = require('./router.js');
@@ -16,7 +16,7 @@ function start(port) {
     app.use(function WaitOnRequest(req, res, next) {
         pathname = req.url;
         console.log("       ");
-        console.log(message + "WaitOnRequest nbreq : " + nbreq + " requetes : " + pathname);
+        console.log(message, "WaitOnRequest nbreq :", nbreq, " requetes :", pathname);
 
         app.set("Views")
         app.set('view engine', 'ejs')
@@ -28,13 +28,13 @@ function start(port) {
         //Demmande en GET
         app.get("*", (request, response) => {
             console.log("       ");
-            console.log("Serveur get : pathname : " + pathname + " nbreq:" + nbreq);
+            console.log("Serveur get : pathname :", pathname, "nbreq:", nbreq);
             routeur.router(request, response, pathname, nbreq++);
         });
         //Demmande en POST
         app.post("*", (request, response) => {
             console.log("       ");
-            console.log("Serveur post : " + " nbreq:" + nbreq);
+            console.log("Serveur post : ", " nbreq:", nbreq);
             routeur.router(request, response, pathname, nbreq++);
         });
 
@@ -49,7 +49,7 @@ function start(port) {
 
     http.createServer(app).listen(port);
     console.log("       ");
-    console.log("Serveur : Demarrage serveur port " + port);
+    console.log("Serveur : Demarrage serveur port", port);
 }
 
 exports.start = start;

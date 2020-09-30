@@ -16,7 +16,8 @@ let sous_menu = false;
 
 function data_controller(nime="") 
 {
-  let sisi = "/* Fichier généré automatiquement Controller : "+nime+"*/ \n"+
+  let sisi = 
+  "/* Fichier généré automatiquement Controller : "+nime+"*/ \n"+
   "exports.Controller = async function Controller(data) { \n"+
   "  var fonctionController = []; \n"+
   "  let Pages_Site = []; \n"+
@@ -45,7 +46,7 @@ function data_vue(nime=""){
   "        <%= PageTitle %> \n"+
   "    </h1> \n"+
   "    <div class='conteneur'> \n"+
-  "        <h1>CORPS</h1> \n"+
+  "        <h1>CORP</h1> \n"+
   "    </div> \n"+
   "</body> \n"+
   "</html> \n"
