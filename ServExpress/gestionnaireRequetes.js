@@ -8,74 +8,80 @@
  * @param {*} nbreq Nombre d'appelle effectuer depuis la mise en router du serveur. Utiliser pour les logs
  */
 
-async function gestionnaireRequetes(request, response, Rviews, Rcontroller, Rname_page, data_get, nbreq) {
-    if (Rcontroller && Rviews) {
-        console.log("Gestionnaire de Requête : views : " + Rviews + " nbreq:" + nbreq);
+async function gestionnaireRequetes(request, response, Rviews, Rcontroller, Rname_page, pathname, nbreq, erreur) {
+    let data_get;
+    let data_post;
+    let datas;
+
+    if (Rcontroller && Rviews && typeof pathname == "string" && erreur == undefined) {
+
+        if (pathname != "/" && pathname.indexOf("?") != -1)
+            data_get = pathname.slice(pathname.indexOf("?") + 1, pathname.length).replace(/\+/g, " ");
+        else
+            data_get = null;
+        if (request._body)
+            data_post = request.body;
+        else
+            data_post = null;
+
+        datas = { data_get, data_post };
+
+        console.log("Gestionnaire de Requête : views : ", Rviews, " nbreq:", nbreq);
         console.log("    ");
         let vue = Rviews;
         let controlleur = Rcontroller;
         let Controller;
         if (controlleur != "" || controlleur != undefined) {
             let controllerReq = require("../Controller/" + controlleur + ".js");
+
             /**
-             * Gestion des requets : POST avec body envoyer sans GET envoyer data_get vide
+             * Gestion des requets sans data envoyer
              */
-            if (request._body && data_get == undefined) {
-                Controller = await controllerReq.Controller(request.body);
-                console.log("Gestionnaire de Requête ___-_DATA_-___ : controller : " + Controller + " POST");
-                redirection(Controller);
-            }
-            /**
-             * Gestion des requets : POST sans body envoyer et GET envoyer data_get non vide
-             */
-            else if (!request._body && data_get != undefined) {
-                Controller = await controllerReq.Controller(data_get);
-                console.log("Gestionnaire de Requête ___-_DATA_-___ : controller : " + Controller + " GET");
-                redirection(Controller);
-            }
-            /**
-             * Gestion des requets : POST avec body envoyer et GET envoyer data_get non vide
-             */
-            else if (request._body && data_get != undefined) {
+            if (data_post == null && data_get == null) {
                 let controllerReq = require("../Controller/" + controlleur + ".js");
-                /**
-                 * @param {*} Getdata_Postdata
-                 */
-                let datas = { "get": data_get, "post": request.body };
-                Controller = await controllerReq.Controller(datas);
+                let Controller = await controllerReq.Controller(datas);
 
-                console.log("Gestionnaire de Requête ___-_DATA_-___ : controller : " + Controller + " POST & GET");
-                redirection(Controller);
-            }
-
-            /**
-             * Gestion des requets POST sans data envoyer
-             */
-            else if (request._body == undefined || data_get == undefined) {
-                data_get = "no_data"
-                let controllerReq = require("../Controller/" + controlleur + ".js");
-                let Controller = await controllerReq.Controller(data_get);
-
-                console.log("Gestionnaire de Requête ____-_RENDER_-____ : controller : " + Controller);
+                console.log("Gestionnaire de Requête ____-_RENDER_-____ : controller : ", Controller);
 
                 response.render("../Views/" + vue + ".ejs", { Controller: Controller, PageTitle: Rname_page });
                 response.end();
+            }
+            /**
+             * Gestion des requets : POST ou GET envoyer
+             */
+            else {
+                Controller = await controllerReq.Controller(datas);
+
+                if (data_post != null)
+                    console.log("Gestionnaire de Requête ___-_DATA_-___ : controller :", " POST", Controller);
+                else if (data_get != null)
+                    console.log("Gestionnaire de Requête ___-_DATA_-___ : controller :", " GET", Controller);
+                else if (data_get != null && data_post != null)
+                    console.log("Gestionnaire de Requête ___-_DATA_-___ : controller :", " POST & GET", Controller);
+
+                redirection(Controller);
             }
 
             function redirection(controller) {
                 if (controller.use_redirect && controller.url_Redirect != undefined) {
                     console.log("Gestionnaire de Requête ____-_REDIRECT_-____ : controller : " + controller);
                     let targetUrl = (typeof(controller.url_Redirect) != "undefined" ? controller.url_Redirect : "/");
-                    response.writeHead(302, {
-                        'Location': targetUrl
+                    if (!controller.persistence) {
+                        controller = undefined;
+                    }
+                    /*response.writeHead(302, {
+                        'Location': targetUrl,
+                        'Controller': controller
                             //add other headers here...
-                    });
-                    response.end();
-                    //response.redirect(targetUrl);
+                    });*/
                     //response.end();
-                } else if (controller.use_redirect && controller.url_Redirect == undefined || controller.use_redirect == false) {
-                    console.log("Gestionnaire de Requête ____-_RENDER_-____ : controller : " + controller);
+                    request.body = controller;
+                    response.redirect(targetUrl);
+                    response.end();
+                } else if (controller.use_redirect && controller.url_Redirect == undefined || controller.use_redirect == false && controller.persistence) {
+                    console.log("Gestionnaire de Requête ____-_RENDER_-____ DATA SEND : controller : ", controller);
                     response.render("../Views/" + vue + ".ejs", { Controller: controller, PageTitle: Rname_page });
+                    controller = "";
                     response.end();
                 }
             }

@@ -17,11 +17,15 @@
     <div class="conteneur">
         <h1>CORP</h1>
         <p>
-            <%= Controller.weirdquestion %>
+            <% if(typeof Controller.weirdquestion != 'undefined') {%>
+                <%= Controller.weirdquestion %>
+                    <%};%>
         </p>
         <div style="width: auto; height:auto;">
             <p>POST</p>
-            <%= Controller.dataPost %>
+            <% if(typeof Controller.dataPost != 'undefined') {%>
+                <%= Controller.dataPost.info %>
+                    <%}%>
         </div>
         <form action="" method="post">
             <input type="hidden" name="openthedoor" value="Close the door ! I playing Minecraft !">
@@ -29,11 +33,9 @@
         </form>
         <div style="width: auto; height:auto;">
             <p>GET</p>
-            <% if(Controller.data!=null) {%>
+            <% if(typeof Controller.dataGet != 'undefined') {%>
                 <%= Controller.dataGet.info %>
-                    <%
-                };
-            %>
+                    <%}%>
         </div>
         <form action="" method="get">
             <input type="hidden" name="seetheson" value="That a good story son !">

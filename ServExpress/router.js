@@ -35,7 +35,6 @@ async function router(request, response, pathname, nbreq) {
         pathname_slice = pathname_slice.slice(pathname_slice.lastIndexOf("/") + 1, pathname_slice.length);
     } else if (pathname != "/") {
         pathname_slice = pathname_slice.slice(pathname_slice.lastIndexOf("/"), pathname_slice.indexOf("?"));
-        data_get = pathname.slice(pathname.indexOf("?") + 1, pathname.length).replace(/\+/g, " ");
     }
 
     while (vue == false || controller == false) {
@@ -71,7 +70,7 @@ async function router(request, response, pathname, nbreq) {
         console.log("Router : Normal circulation : " + pathname_slice);
         console.log("    ");
 
-        gestreq.gestionrequ(request, response, vue, controller, name_page, data_get, nbreq++);
+        gestreq.gestionrequ(request, response, vue, controller, name_page, pathname, nbreq++);
     }
 
     /* ROUTE URL NON VALIDE */
@@ -83,7 +82,7 @@ async function router(request, response, pathname, nbreq) {
             oops = "Erreur : Impossible de trouver la vue";
         else if (controller == false && vue == false)
             oops = "Erreur : Impossible de trouver n'y le controller n'y la vue";
-        gestreq.gestionrequ(request, response, "", "", oops, 0);
+        gestreq.gestionrequ(request, response, "", "", "", "", 0, oops);
     }
 }
 
