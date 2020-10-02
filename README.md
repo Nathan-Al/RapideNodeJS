@@ -26,22 +26,58 @@ Il n'est pas recommander de l'utiliser comme serveur de Prod mais seulement de D
 Teta est l'utilitaire qui vous permet de générer les fichiers t'elle que le controller, la vue, le css et de choisir l'url attribuer a la page.
 Il s'ouvre simplement en double cliquant dessus ou en tapant son nom dans un CMD : Teta ou .\Teta via powershell
 (n'oublier pas de vous situer dans le dossier principale pour le lancer).
-
+#### CMD
+```
+Teta
+```
+#### Powershell
+```
+.\Teta
+```
 ## Commande utilisable
-* np ou New Page
+--------------------------------
+Création d'une nouvelle page
+--------------------------------
+```
+np
+```
+ou
+```
+New Page
+```
 Vous permet de générer le controller, la vue, le css
 vous avez deux options. 
 1°) Default
  * Vous donner un nom et il sera attribuer a tout les fichiers ainsi qu'a l'url.
 2°) personnaliser
  * Vous pourrez choisir le nom du controller, de la vue et du css ainsi que des ou de l'url.
+--------------------------------
+Aide concernant les commandes.
+--------------------------------
+```
+help
+```
+
+ L'aide affichant tout les commandes disponibles.
  
-## Logique de la chose
+--------------------------------
+Quitter
+--------------------------------
+```
+exit
+```
+Vous permet de quitter l'inviter de commande
+
+## Fonctionnement de RapidNodeJS
 Le controller fonctionne comme un énorme tableaux.
+
 Exemple : 
 ### Controller
-![controller exemple](./image.png)
+![controller exemple](./ServExpress/Readmepurpose/controller1.png)
 ### Vue
+![vue exemple](./ServExpress/Readmepurpose/vue1.png)
+### Navigateur
+![nav exemple](./ServExpress/Readmepurpose/nav1.png)
 
  /*
  *Note : ce projet est toujours en cour a l'heure qu'il est 27/09/2020
