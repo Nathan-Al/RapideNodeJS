@@ -207,7 +207,7 @@ var NameSpace_LecteurFichiers = {
                 if (await fs.statSync(path))
                     return true;
             } catch (err) {
-                return new Error("ERREUR : Le Fichier demmander n'existe pas");
+                return false;
             }
         },
         ecrire: async function EcrireDansFichiers(path, trucAEcrire) {
@@ -234,6 +234,21 @@ var NameSpace_LecteurFichiers = {
                 return k;
             }
             // });
+        },
+        supprimer : async function SupprimerFichiers(path)
+        {
+            if(NameSpace_LecteurFichiers.Fichier.VerifyFile(path))
+            {
+                fs.unlink(path, function(err) {
+                    if (err) 
+                        return false;
+                    else
+                        return true;
+                  });
+            }else
+            {
+                return false;
+            } 
         }
     }
 }

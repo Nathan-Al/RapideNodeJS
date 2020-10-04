@@ -1,47 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" rel="stylesheet" href='Css\home.css'>
+        <title>
+            <%= PageTitle %>
+        </title>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link type="text/css" rel="stylesheet" href='Css\home.css'>
-    <title>
-        <%= PageTitle %>
-    </title>
-</head>
-
-<body>
-    <h1>Bienvenue sur la page
-        <%= PageTitle %>
-    </h1>
-    <div class="conteneur">
-        <h1>CORP</h1>
-        <p>
-            <% if(typeof Controller.weirdquestion != 'undefined') {%>
-                <%= Controller.weirdquestion %>
-                    <%};%>
-        </p>
-        <div style="width: auto; height:auto;">
-            <p>POST</p>
-            <% if(typeof Controller.dataPost != 'undefined') {%>
-                <%= Controller.dataPost.info %>
-                    <%}%>
+    <body>
+        <h1>Bienvenue sur la page
+            <%= PageTitle %>
+        </h1>
+        <div class="conteneur">
+            <h1>CORP</h1>
+            <p>
+                <% if(typeof Controller.weirdquestion != 'undefined') {%>
+                    <%= Controller.weirdquestion %>
+                        <%};%>
+            </p>
+            <div style="width: auto; height:auto;">
+                <p>POST</p>
+                <% if(typeof Controller.dataPost != 'undefined') {%>
+                    <%= Controller.dataPost.info %>
+                        <%}%>
+            </div>
+            <form action="" method="post">
+                <input type="hidden" name="openthedoor" value="Close the door ! I playing Minecraft !">
+                <input type="submit" value="Repondre">
+            </form>
+            <div style="width: auto; height:auto;">
+                <p>GET</p>
+                <% if(typeof Controller.dataGet != 'undefined') {%>
+                    <%= Controller.dataGet.info %>
+                        <%}%>
+            </div>
+            <form action="" method="get">
+                <input type="hidden" name="seetheson" value="That a good story son">
+                <input type="submit" value="Repondre">
+            </form>
         </div>
-        <form action="" method="post">
-            <input type="hidden" name="openthedoor" value="Close the door ! I playing Minecraft !">
-            <input type="submit" value="Repondre">
-        </form>
-        <div style="width: auto; height:auto;">
-            <p>GET</p>
-            <% if(typeof Controller.dataGet != 'undefined') {%>
-                <%= Controller.dataGet.info %>
-                    <%}%>
-        </div>
-        <form action="" method="get">
-            <input type="hidden" name="seetheson" value="That a good story son !">
-            <input type="submit" value="Repondre">
-        </form>
-    </div>
-</body>
-
+    </body>
 </html>

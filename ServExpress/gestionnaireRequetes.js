@@ -23,7 +23,7 @@ async function gestionnaireRequetes(request, response, Rviews, Rcontroller, Rnam
             data_post = request.body;
         else
             data_post = null;
-
+        //Données get et post traiter
         datas = { data_get, data_post };
 
         console.log("Gestionnaire de Requête : views : ", Rviews, " nbreq:", nbreq);
@@ -69,12 +69,6 @@ async function gestionnaireRequetes(request, response, Rviews, Rcontroller, Rnam
                     if (!controller.persistence) {
                         controller = undefined;
                     }
-                    /*response.writeHead(302, {
-                        'Location': targetUrl,
-                        'Controller': controller
-                            //add other headers here...
-                    });*/
-                    //response.end();
                     request.body = controller;
                     response.redirect(targetUrl);
                     response.end();

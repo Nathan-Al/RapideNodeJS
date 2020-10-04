@@ -29,7 +29,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\ServExpress\\index.js"
+            "program": "${workspaceFolder}\\test\\index.js"
         }
     ]
 }
