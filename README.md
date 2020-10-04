@@ -101,11 +101,9 @@ Comme on le peut le voir la variable `weirdquestion` est accessible par la varia
 ![nav exemple1](./ServExpress/Readmepurpose/html1.png) <br />
 La variable s'affiche bien sur le navigateur. <br />
 Bien et maintenant quand une variable est passée en GET ou POST ? <br />
-
 ![nav exemple2](./ServExpress/Readmepurpose/htmlpost.png) <br />
 On peut voir que la variable s'affiche bien grâce à `Controller.dataPost.info` Note : `dataPost` est le nom de la variable définie dans le contrôleur <br />
 ![nav exemple3](./ServExpress/Readmepurpose/htmlget.png) <br />
 On peut voir que la variable s'affiche bien grâce à `Controller.Get.info` Note : `dataGet` est le nom de la variable définie dans le contrôleur. <br />
 
 *Note : ce projet est toujours en cours à l'heure qu'il est 27/09/2020
- 
