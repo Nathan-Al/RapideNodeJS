@@ -3,6 +3,8 @@ const express = require('express');
 let app = express();
 var bodyParser = require('body-parser')
 let routeur = require('./router.js');
+let serveur_dis = require('./connexion');
+serveur_dis.MySQLCo();
 
 let message = "Serveur : ";
 let pathname
