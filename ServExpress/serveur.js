@@ -51,7 +51,7 @@ function start(port) {
 
     http.createServer(app).listen(port);
     console.log("       ");
-    console.log("Serveur : Demarrage serveur port", port);
+    console.log("Serveur : Demarrage serveur port", port, 'url : http://localhost:4444');
 }
 
 exports.start = start;
