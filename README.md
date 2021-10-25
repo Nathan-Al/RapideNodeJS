@@ -26,6 +26,19 @@ Il n'est pas recommandé de l'utiliser comme serveur de Prod mais seulement de D
 * Créer rapidement une page son css ainsi que son contrôleur grâce à l'utilitaire *Teta.
 * Choisir l'url que l'on veut pour sa page ou même en mettre plusieurs.
 
+## Comment l'installer ?
+Si vous avez Node JS installer sur votre système il vous suffit de lancer cette commande
+#### CMD
+```
+Install
+```
+#### Powershell
+```
+.\Install
+```
+Une fois cela fait ouvrir votre navigateur et aller a l'addresse `http://localhost:4444`
+
+--------------
 ## Comment le lancer ?
 Si vous avez Node JS installer sur votre système il vous suffit de lancer cette commande
 #### CMD
@@ -36,7 +49,7 @@ Laucher
 ```
 .\Laucher
 ```
-Une fois cela fait ouvrir votre navigateur et aller a l'addresse `localhost:4444`
+Une fois cela fait ouvrir votre navigateur et aller a l'addresse `http://localhost:4444`
 
 --------------
 ## Les utilitaires en commande prompt
