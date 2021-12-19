@@ -1,0 +1,12 @@
+.container-1
+{
+    min-height: 50%;
+    margin-top: 2%;
+    background-color: rgb(27, 27, 27);
+}
+
+.container-2
+{
+    height: auto;
+    background-color: rgb(226, 226, 226);
+}
