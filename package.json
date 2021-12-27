@@ -16,8 +16,9 @@
   "description": "Demarrer NodeJS avec Express et qu'elle petite dependance pour se faciliter la vie",
   "main": "index.js",
   "scripts": {
-    "test": "test",
-    "start": "nodemon ServExpress/index.js"
+    "start-dev": "nodemon ServExpress/index.js",
+    "start": "node ServExpress/index.js",
+    "teta": "node ServExpress/teta.js"
   },
   "repository": {
     "type": "git",
