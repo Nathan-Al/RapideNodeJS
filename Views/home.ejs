@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" rel="stylesheet" href='Css\base.css'>
         <link type="text/css" rel="stylesheet" href='Css\home.css'>
         <title>
             <%= PageTitle %>
@@ -10,11 +11,21 @@
     </head>
 
     <body>
-        <h1>Bienvenue sur la page
-            <%= PageTitle %>
-        </h1>
+        <nav class="navigation-bar">
+            <div class="nav-start">
+                <h1>RAPIDENODE JS</h1>
+            </div>
+            <div class="nav-center">
+                <h1 class="center">
+                    Bienvenue sur la page <%= PageTitle %>
+                </h1>
+            </div>
+            <div class="nav-end">
+
+            </div>
+        </nav>
+
         <div class="conteneur">
-            <h1>CORP</h1>
             <p>
                 <% if(typeof Controller.weirdquestion != 'undefined') {%>
                     <%= Controller.weirdquestion %>
