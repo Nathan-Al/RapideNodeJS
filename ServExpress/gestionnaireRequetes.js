@@ -2,18 +2,22 @@
  * 
  * @param {*} request Requetes serveur automatiquement envoyer pour traitement
  * @param {*} response Reponse serveur automatiquement envoyer pour traitement
- * @param {*} Rviews Vue envoyer par le router. R pour Request Views
- * @param {*} Rcontroller Controller envoyer par le router. R pour Request Controller
+ * @param {*} vue Vue envoyer par le router. R pour Request Views
+ * @param {*} controller Controller envoyer par le router. R pour Request Controller
  * @param {*} data_get Informations envoyer par POST ou GET pour traitement par le controller
  * @param {*} nbreq Nombre d'appelle effectuer depuis la mise en router du serveur. Utiliser pour les logs
  */
 
-async function gestionnaireRequetes(request, response, Rviews, Rcontroller, Rname_page, pathname, nbreq, erreur) {
+async function gestionnaireRequetes(request, response, vue = null, controller = null, name_page = null, pathname = null, nbreq = null, erreur = null) {
+
+    console.log("----------------------------------");
+    console.log(`Gestionnaire de Requête : controller-[${controller}], views-[${vue}], pathname-[${pathname}], erreur-[${erreur}]`);
+
     let data_get;
     let data_post;
     let datas;
 
-    if (Rcontroller && Rviews && typeof pathname == "string" && erreur == undefined) {
+    if (controller && vue && typeof pathname === 'string' && erreur === 'none') {
 
         if (pathname != "/" && pathname.indexOf("?") != -1)
             data_get = pathname.slice(pathname.indexOf("?") + 1, pathname.length).replace(/\+/g, " ");
@@ -26,25 +30,25 @@ async function gestionnaireRequetes(request, response, Rviews, Rcontroller, Rnam
         //Données get et post traiter
         datas = { data_get, data_post };
 
-        console.log("Gestionnaire de Requête : views : ", Rviews, " nbreq:", nbreq);
-        console.log("    ");
-        let vue = Rviews;
-        let controlleur = Rcontroller;
-        let Controller;
-        if (controlleur != "" || controlleur != undefined) {
-            let controllerReq = require("../Controller/" + controlleur + ".js");
+        let Controller = null;
+        if (controller != "" || controller != undefined) {
+            let controllerReq = require("../Controller/" + controller + ".js");
 
             /**
              * Gestion des requets sans data envoyer
              */
             if (data_post == null && data_get == null) {
-                let controllerReq = require("../Controller/" + controlleur + ".js");
+                let controllerReq = require("../Controller/" + controller + ".js");
                 let Controller = await controllerReq.Controller(datas);
 
-                console.log("Gestionnaire de Requête ____-_RENDER_-____ : controller : ", Controller);
+                console.log(`Gestionnaire de Requête -RENDER DATA- :`, Controller);
+                console.log("----------------------------------\n");
 
-                response.render("../Views/" + vue + ".ejs", { Controller: Controller, PageTitle: Rname_page });
+                console.log("----------------------------------");
+                console.log("Controller")
+                response.render("../Views/" + vue + ".ejs", { Controller: Controller, PageTitle: name_page });
                 response.end();
+                console.log("----------------------------------\n");
             }
             /**
              * Gestion des requets : POST ou GET envoyer
@@ -53,18 +57,18 @@ async function gestionnaireRequetes(request, response, Rviews, Rcontroller, Rnam
                 Controller = await controllerReq.Controller(datas);
 
                 if (data_post != null)
-                    console.log("Gestionnaire de Requête ___-_DATA_-___ : controller :", " POST", Controller);
+                    console.log('Gestionnaire de Requête -DATA POST- :', Controller);
                 else if (data_get != null)
-                    console.log("Gestionnaire de Requête ___-_DATA_-___ : controller :", " GET", Controller);
+                    console.log('Gestionnaire de Requête -DATA GET- :', Controller);
                 else if (data_get != null && data_post != null)
-                    console.log("Gestionnaire de Requête ___-_DATA_-___ : controller :", " POST & GET", Controller);
+                    console.log('Gestionnaire de Requête -DATA POST & GET :', Controller);
 
                 redirection(Controller);
             }
 
             function redirection(controller) {
                 if (controller.use_redirect && controller.url_Redirect != undefined) {
-                    console.log("Gestionnaire de Requête ____-_REDIRECT_-____ : controller : " + controller);
+                    console.log(`Gestionnaire de Requête -REDIRECT- :${typeof(controller)}`);
                     let targetUrl = (typeof(controller.url_Redirect) != "undefined" ? controller.url_Redirect : "/");
                     if (!controller.persistence) {
                         controller = undefined;
@@ -73,18 +77,31 @@ async function gestionnaireRequetes(request, response, Rviews, Rcontroller, Rnam
                     response.redirect(targetUrl);
                     response.end();
                 } else if (controller.use_redirect && controller.url_Redirect == undefined || controller.use_redirect == false && controller.persistence) {
-                    console.log("Gestionnaire de Requête ____-_RENDER_-____ DATA SEND : controller : ", controller);
-                    response.render("../Views/" + vue + ".ejs", { Controller: controller, PageTitle: Rname_page });
+                    console.log('Gestionnaire de Requête -RENDER DATA- :', controller);
+                    console.log("----------------------------------\n");
+
+                    console.log("----------------------------------");
+                    console.log("Controller : ")
+                    response.render("../Views/" + vue + ".ejs", { Controller: controller, PageTitle: name_page });
                     controller = "";
                     response.end();
+                    console.log("----------------------------------\n");
                 }
             }
         }
     } else {
-        console.log("Hmmm c'est embêtant", "Le serveur n'a pas la moindre idée de ce que vous vouliez, étrange non ?")
+        console.log("\n!-----------------ERROR-----------------!");
+        console.group();
+        console.warn("Impossible de trouver la ressource demander.")
+        console.log(`Informations : controller-[${controller}], vue-[${vue}], url-[${pathname}], error message-[${erreur}]`)
+        console.log('Request :', request.params);
+        console.log('Response :', response.params);
+        console.groupEnd();
+        console.log("!-----------------ERROR-----------------!\n");
+
         response.render("../ServExpress/erreur/index.ejs", { Message: data_get });
         response.end();
     }
 
 }
-exports.gestionrequ = gestionnaireRequetes;
+exports.gestionnaireRequetes = gestionnaireRequetes;

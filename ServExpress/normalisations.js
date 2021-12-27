@@ -7,15 +7,12 @@ var NameSpace_Normalisations = {
 
     Chaine: {
         NettoyageCharactere_1: function NettoyageCharac(variable) {
-            console.log(variable)
             variable = variable.trim();
             let charac_a_enlever = ['\\', "/", ":", "*", "?", '"', "<", ">", "|", " ","\"",];
             charac_a_enlever.forEach(function(value) {
                 variable = variable.replace(value, "");
             });
             variable = variable.trim();
-
-            console.log(variable)
             return variable;
         },
         MajusculePremiereLettre: function upperCaseFirstLetter(str) {

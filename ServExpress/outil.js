@@ -165,6 +165,7 @@ var NameSpace_LecteurFichiers = {
             });
         }, 
         creer: async function CreeFichier(destination ="", nom="", extensions="", data="") {
+
             if (nom.lastIndexOf("/") != "-1")
                 nom.replace("/", "")
             if (nom.lastIndexOf(".") != -1)
@@ -183,15 +184,9 @@ var NameSpace_LecteurFichiers = {
                 await fs.stat(destination, async function(err, stat) {
                     if (stat) {
                         try {
-                            await fsPromises.writeFile(destination + nom + extensions, (err) => {
+                            await fsPromises.writeFile(destination + nom + extensions, data, (err) => {
                                 throw err;
                             });
-                            try {
-                                await NameSpace_LecteurFichiers.Fichier.ecrire(destination + nom + extensions,data)
-                            }catch(e)
-                            {
-                                throw e;
-                            }
                             return true;
                         } catch (Exception) {
                             throw Exception;
@@ -210,8 +205,7 @@ var NameSpace_LecteurFichiers = {
                 return false;
             }
         },
-        ecrire: async function EcrireDansFichiers(path, trucAEcrire) {
-            //fs.stat(path, async(err, stat) => {
+        ecrire: async function EcrireDansFichiers(path, datas) {
             if (!fs.statSync(path)) {
                 if (err.code === 'EEXIST') {
                     console.error('myfile already exists');
@@ -220,20 +214,17 @@ var NameSpace_LecteurFichiers = {
                 throw err;
             } else {
                 let write = await fs.createWriteStream(path,{flags:'rs+'})
-                await write.write(trucAEcrire, 'utf-8')
+                await write.write(datas, 'utf-8')
 
-                //let j = await new Promise(function(resolve, reject) {
                 let k = write.on('end', async function() {
                         resolve(true);
                     }).on('error', async(err) => {
                         console.log("Erreur to read on data :: " + err);
                         throw err;
                     })
-                    //})
 
                 return k;
             }
-            // });
         },
         supprimer : async function SupprimerFichiers(path)
         {

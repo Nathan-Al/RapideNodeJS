@@ -1,23 +1,23 @@
 var mysql = require('mysql');
-let host = "";
-let user = "";
-let password = "";
-let database = "";
+let host = '';
+let user = '';
+let password = '';
+let database = '';
 
-async function MySQLCo() {
+function MySQLCo() {
     var con = mysql.createConnection({
         host,
         user,
         password,
         database
     });
-    if (host != "" && user != "" && password != "" && database != "") {
+    if (host != '' && user != '' && password != '' && database != '') {
         con.connect(function(err) {
             if (err) throw err;
-            console.log("Connected to the database !");
+            return true;
         });
     } else {
-        console.log("Aucune base de données renseigné");
+        return false;
     }
 
 }

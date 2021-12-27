@@ -3,11 +3,6 @@ let outils = require("./outil");
 const fs = require('fs')
 
 let urlValide = false;
-let nomPage = [];
-let urlPage = "";
-let li;
-let mo;
-let data_get = undefined;
 
 /**
  * 
@@ -18,10 +13,12 @@ let data_get = undefined;
  */
 
 async function router(request, response, pathname, nbreq) {
-    let compteur = 0;
-    console.log("Router request :" + request + " response : " + response + " pathname_slice : " + pathname + " nbreq : " + nbreq);
 
-    let fichier = fs.readFileSync('ServExpress/lecteur_fichier.json');
+    console.log("----------------------------------");
+    console.log(`Router : request-[${typeof(request)}], response-[${typeof(response)}], pathname_slice-[${pathname}]`);
+
+    let compteur = 0;
+    let fichier = fs.readFileSync('ServExpress/urls.json');
     let json_parse = JSON.parse(fichier)
     let vue = false;
     let controller = false;
@@ -67,22 +64,20 @@ async function router(request, response, pathname, nbreq) {
 
     /* ROUTE URL VALIDE */
     if (urlValide == true && pathname_slice != "/favicon.ico" && controller != false && vue != false) {
-        console.log("Router : Normal circulation : " + pathname_slice);
-        console.log("    ");
-
-        gestreq.gestionrequ(request, response, vue, controller, name_page, pathname, nbreq++);
-    }
-
-    /* ROUTE URL NON VALIDE */
-    else {
-        let oops;
+        console.log(`Router : [${pathname_slice}]`);
+        console.log("----------------------------------\n");
+        gestreq.gestionnaireRequetes(request, response, vue, controller, name_page, pathname, nbreq++,'none');
+    } else {
+        /* ROUTE URL NON VALIDE */
+        let error = null;
         if (controller == false && vue == true)
-            oops = "Erreur : Impossible de trouver le controller";
+            error = "Impossible de trouver le controller";
         else if (vue == false && controller == true)
-            oops = "Erreur : Impossible de trouver la vue";
+            error = "Impossible de trouver la vue";
         else if (controller == false && vue == false)
-            oops = "Erreur : Impossible de trouver n'y le controller n'y la vue";
-        gestreq.gestionrequ(request, response, "", "", "", "", 0, oops);
+            error = "Impossible de trouver n'y le controller n'y la vue";
+        console.log("----------------------------------\n");
+        gestreq.gestionnaireRequetes(request, response, '', '', '', '', 0, error);
     }
 }
 

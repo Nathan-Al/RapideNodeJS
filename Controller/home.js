@@ -3,7 +3,7 @@
  */
 exports.Controller = async function Controller(data) {
     var fonctionController = [];
-    console.log("Data : " + data)
+    //console.log("Controller : " + data)
     let exemple = "Are ya winning son ?";
     fonctionController.weirdquestion = exemple;
 
