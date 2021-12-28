@@ -12,45 +12,97 @@
 
     <body>
         <nav class="navigation-bar">
-            <div class="nav-start">
+            <div class="nav-start center">
                 <h1>RAPIDENODE JS</h1>
             </div>
-            <div class="nav-center">
+            <div class="nav-center center">
                 <h1 class="center">
                     Bienvenue sur la page <%= PageTitle %>
                 </h1>
             </div>
-            <div class="nav-end">
+            <div class="nav-end center">
 
             </div>
         </nav>
 
-        <div class="conteneur">
-            <p>
-                <% if(typeof Controller.weirdquestion != 'undefined') {%>
-                    <%= Controller.weirdquestion %>
-                        <%};%>
-            </p>
-            <div style="width: auto; height:auto;">
-                <p>POST</p>
-                <% if(typeof Controller.dataPost != 'undefined') {%>
-                    <%= Controller.dataPost.info %>
-                        <%}%>
+        <div class="main">
+            <div class="conteneur div-info">
+                <div class="content center-column">
+                    <h1>
+                        Ceci est la page d'accueil par défaut
+                    </h1>
+                    <p>
+                        Cette page est disponible sous les urls [ <strong>/</strong>, <strong>home</strong>, <strong>accueil</strong> ]
+                    </p>
+                </div>
             </div>
-            <form action="" method="post">
-                <input type="hidden" name="openthedoor" value="Close the door ! I playing Minecraft !">
-                <input type="submit" value="Repondre">
-            </form>
-            <div style="width: auto; height:auto;">
-                <p>GET</p>
-                <% if(typeof Controller.dataGet != 'undefined') {%>
-                    <%= Controller.dataGet.info %>
-                        <%}%>
+            <hr>
+            <div class="conteneur">
+                <div class="content">
+                    <div class="center">
+                        <div class="box">
+                            <h2>Zone de test pour form</h2>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="center">
+                            <div class="div-form-presentation">
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="card-title">
+                                            <h2>POST</h2>
+                                        </div>
+                                        <div class="card-center">
+                                            <p class="m-0 p-1">
+                                                <% if(typeof Controller.weirdquestion != 'undefined') {%>
+                                                    <%= Controller.weirdquestion %>
+                                                        <%};%>
+                                            </p>
+                                            <% if(typeof Controller.dataPost != 'undefined') {%>
+                                                <%= Controller.dataPost.info %>
+                                                    <%}%>
+                                        </div>
+    
+                                        <div class="card-end">
+                                            <form action="" method="POST">
+                                                <input type="hidden" name="openthedoor" value="Close the door ! I playing Minecraft !">
+                                                <input type="submit" value="Repondre">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-content">
+                                        <div class="card-title">
+                                            <h2>GET</h2>
+                                        </div>
+                                        <div class="card-center">
+                                            <p class="m-0 p-1">Hey Father i saw a man flying in the sky today !</p>
+    
+                                            <% if(typeof Controller.dataGet != 'undefined') {%>
+                                                <%= Controller.dataGet.info %>
+                                                    <%}%>
+                                        </div>
+                                        <div class="card-end">
+                                            <form action="" method="GET">
+                                                <input type="hidden" name="seetheson" value="That a good story son">
+                                                <input type="submit" value="Repondre">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <form action="" method="get">
-                <input type="hidden" name="seetheson" value="That a good story son">
-                <input type="submit" value="Repondre">
-            </form>
+            <div class="conteneur">
+                <div class="content center-column">
+                    <h1>Page Test</h1>
+                    <a href="test">Aller</a>
+                </div>
+            </div>
         </div>
     </body>
 </html>

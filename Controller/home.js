@@ -1,4 +1,4 @@
-/*
+/**
  * @param {*} data Donnée envoyer en POST ou GET
  */
 exports.Controller = async function Controller(data) {
