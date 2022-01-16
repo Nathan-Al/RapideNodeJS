@@ -37,58 +37,89 @@
                 </div>
             </div>
             <hr>
-            <div class="conteneur">
-                <div class="content">
-                    <div class="center">
-                        <div class="box">
-                            <h2>Zone de test pour form</h2>
+            <div class="conteneur-w">
+                <div class="conteneur  center-column">
+                    <h1 class="center">Service</h1>
+                    <div class="content">
+                        <div class="conteneur">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="td-div">
+                                            <h3>Server state : </h3>
+                                            <p><% if(typeof Controller.serverState != 'undefined') {%>
+                                                <%= Controller.serverState %>
+                                                    <%}%>
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="td-div">
+                                            <h3>Connected to the database : </h3>
+                                            <p><% if(typeof Controller.databaseState != 'undefined') {%>
+                                                <%= Controller.databaseState %>
+                                                    <%}%>
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
+                </div>
+                <div class="conteneur">
                     <div class="content">
                         <div class="center">
-                            <div class="div-form-presentation">
-                                <div class="card">
-                                    <div class="card-content">
-                                        <div class="card-title">
-                                            <h2>POST</h2>
-                                        </div>
-                                        <div class="card-center">
-                                            <p class="m-0 p-1">
-                                                <% if(typeof Controller.weirdquestion != 'undefined') {%>
-                                                    <%= Controller.weirdquestion %>
-                                                        <%};%>
-                                            </p>
-                                            <% if(typeof Controller.dataPost != 'undefined') {%>
-                                                <%= Controller.dataPost.info %>
-                                                    <%}%>
-                                        </div>
-    
-                                        <div class="card-end">
-                                            <form action="" method="POST">
-                                                <input type="hidden" name="openthedoor" value="Close the door ! I playing Minecraft !">
-                                                <input type="submit" value="Repondre">
-                                            </form>
+                            <div class="box">
+                                <h2>Zone de test pour form</h2>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="center">
+                                <div class="div-form-presentation">
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <div class="card-title">
+                                                <h2>POST</h2>
+                                            </div>
+                                            <div class="card-center">
+                                                <p class="m-0 p-1">
+                                                    <% if(typeof Controller.weirdquestion != 'undefined') {%>
+                                                        <%= Controller.weirdquestion %>
+                                                            <%};%>
+                                                </p>
+                                                <% if(typeof Controller.dataPost != 'undefined') {%>
+                                                    <%= Controller.dataPost.info %>
+                                                        <%}%>
+                                            </div>
+        
+                                            <div class="card-end">
+                                                <form action="" method="POST">
+                                                    <input type="hidden" name="openthedoor" value="Close the door ! I playing Minecraft !">
+                                                    <input type="submit" value="Repondre">
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="card">
-                                    <div class="card-content">
-                                        <div class="card-title">
-                                            <h2>GET</h2>
-                                        </div>
-                                        <div class="card-center">
-                                            <p class="m-0 p-1">Hey Father i saw a man flying in the sky today !</p>
     
-                                            <% if(typeof Controller.dataGet != 'undefined') {%>
-                                                <%= Controller.dataGet.info %>
-                                                    <%}%>
-                                        </div>
-                                        <div class="card-end">
-                                            <form action="" method="GET">
-                                                <input type="hidden" name="seetheson" value="That a good story son">
-                                                <input type="submit" value="Repondre">
-                                            </form>
+                                    <div class="card">
+                                        <div class="card-content">
+                                            <div class="card-title">
+                                                <h2>GET</h2>
+                                            </div>
+                                            <div class="card-center">
+                                                <p class="m-0 p-1">Hey Father i saw a man flying in the sky today !</p>
+        
+                                                <% if(typeof Controller.dataGet != 'undefined') {%>
+                                                    <%= Controller.dataGet.info %>
+                                                        <%}%>
+                                            </div>
+                                            <div class="card-end">
+                                                <form action="" method="GET">
+                                                    <input type="hidden" name="seetheson" value="That a good story son">
+                                                    <input type="submit" value="Repondre">
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -96,13 +127,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="conteneur">
-                <div class="content center-column">
-                    <h1>Page Test</h1>
-                    <a href="test">Aller</a>
+                <div class="conteneur">
+                    <div class="content center-column">
+                        <h1>Page Test</h1>
+                        <a href="test">Aller</a>
+                    </div>
                 </div>
             </div>
+
         </div>
     </body>
 </html>
