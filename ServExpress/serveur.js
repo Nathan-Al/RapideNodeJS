@@ -1,27 +1,26 @@
 const http = require('http');
+const favicon = require('serve-favicon');
 const express = require('express');
-let app = express();
-var bodyParser = require('body-parser')
-let routeur = require('./router.js');
-let serveur_dis = require('./connexion');
-const res = require('express/lib/response');
+const app = express();
+const bodyParser = require('body-parser')
+const beautyLogs = require('./helper/beautyLogs.js/main.js');
+const routeur = require('./router.js');
+const serveur_dis = require('./connexion');
 
 /**
- * 
- * @param {*} port Port a déffinir dans l'index
+ * @description Démarre le seveur NodeJS
+ * @param {Number} port Port a déffinir dans l'index
  */
-function start(port) {
-    let bdd_co = '';
-    let bdd_response ='';
+async function start(port) {
+    let bddCon = undefined;
+    let bddResponse ='';
     let pathname = null;
-    let req = '';
-    let res = '';
     let nbreq = 0;
 
-    bdd_co = serveur_dis.MySQLCo();
+    bddCon = await serveur_dis.MySQLCo();
     app.use(function WaitOnRequest(request, response, next) {
         pathname = request.url;
-        console.log("----------------------------------");
+
         console.log(`Serveur : nbreq-[${nbreq}], requetes-[${pathname}]`);
 
         app.set("Views")
@@ -29,29 +28,21 @@ function start(port) {
 
         //Dossier de fichiers static
         app.use(express.static("Public"));
+        app.use(favicon(__dirname + '/Media/favicon.ico'));
         app.use(bodyParser.urlencoded({ extended: true }));
 
         //Demmande en GET
         app.get("*", (request, response) => {
-            req = request;
-            res = response;
-            console.log("----------------------------------");
-            console.log(`Serveur GET : pathname-[${pathname}]`);
-            console.log("----------------------------------\n");
+            console.log(`Serveur : GET pathname-[${pathname}]`,true);
+            beautyLogs.bLine(true)
             routeur.router(request, response, pathname, nbreq++);
         });
         //Demmande en POST
         app.post("*", (request, response) => {
-            req = request;
-            res = response;
-            console.log("----------------------------------");
-            console.log(`Serveur POST : pathname-[${pathname}]`);
-            console.log("----------------------------------\n");
+            console.log(`Serveur : POST pathname-[${pathname}]`);
+            beautyLogs.bLine(true)
             routeur.router(request, response, pathname, nbreq++);
         });
-        console.log("----------------------------------\n");
-
-        //routeur.router(request, response, pathname, nbreq++);
 
         //Gestion redirection
         function handleRedirect(req, res) {
@@ -62,22 +53,21 @@ function start(port) {
         next();
     })
 
-    switch (bdd_co) {
+    switch (bddCon) {
         case true:
-            bdd_response = "Connected to the database !";
+            bddResponse = "Connected to the database !";
             break;
-        case false:
-            bdd_response = "Aucune base de données renseigné";
+        default:
+            bddResponse = "Unable to connect to the database";
             break;
     }
 
     http.createServer(app).listen(port);
-    console.log("----------------------------------");
-    console.log("Serveur : Demarrage serveur port", port, 'url-[http://localhost:4444]');
-    console.log("Version : 1.0.0");
-    console.log("Database connection :", bdd_co);
-    console.log("Vous pouvez arreter le serveur en faisant Ctrl + c")
-    console.log("----------------------------------\n");
+    beautyLogs.bLogs(
+        'Serveur : Demarrage serveur port '+ port +' url-[http://localhost:4444]\n'+
+        'Version : 1.0.0\n'+
+        'Database connection : '+ bddResponse + " | " + bddCon + '\n'+
+        'You can stop the server by taping Ctrl + c')
 }
 
 exports.start = start;

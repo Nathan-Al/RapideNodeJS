@@ -176,7 +176,7 @@ async function NewPage() {
                     if (final == "yes" || final == "") {
                         await tools.NameSpace_LecteurFichiers.Fichier.creer("Controller", name, "js", data_controller(name));
                         await tools.NameSpace_LecteurFichiers.Fichier.creer("Views", name, "ejs", data_view(name));
-                        await tools.NameSpace_LecteurFichiers.Fichier.creer("Public/Css", name, "css", data_css);
+                        await tools.NameSpace_LecteurFichiers.Fichier.creer("Public/Css", name, "css", data_css());
                         Edit_Json_New_Page(name, name, name, name, name)
                         rl.close();
                     } else {

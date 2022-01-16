@@ -3,19 +3,19 @@
  * @param {*} data send in POST or GET
 */
 
-exports.Controller = asyncfunctionController(data) {
+exports.Controller = async function Controller(data) {
 
     /**
      * @description Principal return Object
      */
-    let varfonctionController = [];
+    let fonctionController = [];
 
     if (data.data_get == null && data.data_post == null) {
 
 
-        returnfonctionController;
+        return fonctionController;
 
-    } elseif(data != undefined && data != 'no_data') {
+    } else if (data != undefined && data != 'no_data') {
 
         fonctionController.use_redirect = false;
 
@@ -23,21 +23,21 @@ exports.Controller = asyncfunctionController(data) {
 
         fonctionController.persistence = false;
 
-    if(data) {
-        letinfo_get;
-        letinfo_post;
+    if (data) {
+        let info_get;
+        let info_post;
 
-        if(data.data_post != null) {
+        if (data.data_post != null) {
 
-        }elseif(data.data_get != null) {
+        } else if (data.data_get != null) {
 
         }
     } else {
-        returnnewError('Controllererror:aucuneinformationsenvoyer');
+        return new Error('Controller error : Aucune informations envoyer');
     }
 
-    returnfonctionController;
+    return fonctionController;
     } else {
-        return new Error('Controllererror:Aucuneinformationsn a été envoyer');
+        return new Error('Controller error : Aucune informations n\'a été envoyer');
     }
 };

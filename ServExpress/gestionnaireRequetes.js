@@ -1,107 +1,90 @@
+const beautyLogs = require('./helper/beautyLogs.js/main.js');
+
 /**
  * 
  * @param {*} request Requetes serveur automatiquement envoyer pour traitement
  * @param {*} response Reponse serveur automatiquement envoyer pour traitement
- * @param {*} vue Vue envoyer par le router. R pour Request Views
- * @param {*} controller Controller envoyer par le router. R pour Request Controller
- * @param {*} data_get Informations envoyer par POST ou GET pour traitement par le controller
- * @param {*} nbreq Nombre d'appelle effectuer depuis la mise en router du serveur. Utiliser pour les logs
+ * @param {String} vue Vue envoyer par le router. R pour Request Views
+ * @param {String} controller Controller envoyer par le router. R pour Request Controller
+ * @param {String} name_page The page name given by the user
+ * @param {String} pathname The url asked by the navigator
+ * @param {String} erreur The error message
  */
 
-async function gestionnaireRequetes(request, response, vue = null, controller = null, name_page = null, pathname = null, nbreq = null, erreur = null) {
+async function gestionnaireRequetes(request, response, vue = null, controller = null, name_page = null, pathname = null, erreur = null) {
 
-    console.log("----------------------------------");
+    let viewsDir = '../Views/'
+
+    ///let Controller = null;
+    /**
+     * @param {Object}
+     */
+    let datas = {Get:undefined, Post:undefined};
+
+    beautyLogs.bLine()
     console.log(`Gestionnaire de Requête : controller-[${controller}], views-[${vue}], pathname-[${pathname}], erreur-[${erreur}]`);
 
-    let data_get;
-    let data_post;
-    let datas;
+    if (controller != undefined && vue != undefined && typeof pathname === 'string' && erreur === 'none') {
 
-    if (controller && vue && typeof pathname === 'string' && erreur === 'none') {
-
+        // Take the request from the url send in GET method
         if (pathname != "/" && pathname.indexOf("?") != -1)
-            data_get = pathname.slice(pathname.indexOf("?") + 1, pathname.length).replace(/\+/g, " ");
-        else
-            data_get = null;
+            datas.Get = pathname.slice(pathname.indexOf("?") + 1, pathname.length).replace(/\+/g, " ");
+
         if (request._body)
-            data_post = request.body;
-        else
-            data_post = null;
-        //Données get et post traiter
-        datas = { data_get, data_post };
+            datas.Post = request.body;
 
-        let Controller = null;
-        if (controller != "" || controller != undefined) {
-            let controllerReq = require("../Controller/" + controller + ".js");
-
-            /**
-             * Gestion des requets sans data envoyer
-             */
-            if (data_post == null && data_get == null) {
-                let controllerReq = require("../Controller/" + controller + ".js");
-                let Controller = await controllerReq.Controller(datas);
-
-                console.log(`Gestionnaire de Requête -RENDER DATA- :`, Controller);
-                console.log("----------------------------------\n");
-
-                console.log("----------------------------------");
-                console.log("Controller")
-                response.render("../Views/" + vue + ".ejs", { Controller: Controller, PageTitle: name_page });
-                response.end();
-                console.log("----------------------------------\n");
-            }
-            /**
-             * Gestion des requets : POST ou GET envoyer
-             */
-            else {
-                Controller = await controllerReq.Controller(datas);
-
-                if (data_post != null)
-                    console.log('Gestionnaire de Requête -DATA POST- :', Controller);
-                else if (data_get != null)
-                    console.log('Gestionnaire de Requête -DATA GET- :', Controller);
-                else if (data_get != null && data_post != null)
-                    console.log('Gestionnaire de Requête -DATA POST & GET :', Controller);
-
-                redirection(Controller);
-            }
-
-            function redirection(controller) {
-                if (controller.use_redirect && controller.url_Redirect != undefined) {
-                    console.log(`Gestionnaire de Requête -REDIRECT- :${typeof(controller)}`);
-                    let targetUrl = (typeof(controller.url_Redirect) != "undefined" ? controller.url_Redirect : "/");
-                    if (!controller.persistence) {
-                        controller = undefined;
-                    }
-                    request.body = controller;
-                    response.redirect(targetUrl);
-                    response.end();
-                } else if (controller.use_redirect && controller.url_Redirect == undefined || controller.use_redirect == false && controller.persistence) {
-                    console.log('Gestionnaire de Requête -RENDER DATA- :', controller);
-                    console.log("----------------------------------\n");
-
-                    console.log("----------------------------------");
-                    console.log("Controller : ")
-                    response.render("../Views/" + vue + ".ejs", { Controller: controller, PageTitle: name_page });
-                    controller = "";
-                    response.end();
-                    console.log("----------------------------------\n");
-                }
-            }
-        }
-    } else {
-        console.log("\n!-----------------ERROR-----------------!");
-        console.group();
-        console.warn("Impossible de trouver la ressource demander.")
-        console.log(`Informations : controller-[${controller}], vue-[${vue}], url-[${pathname}], error message-[${erreur}]`)
-        console.log('Request :', request.params);
-        console.log('Response :', response.params);
-        console.groupEnd();
-        console.log("!-----------------ERROR-----------------!\n");
-
-        response.render("../ServExpress/erreur/index.ejs", { Message: data_get });
+        /**
+         * Gestion des controller demander
+         */
+        console.log(`Gestionnaire de Requête -Call Controller-`);
+        //let controllerMain = require(controllerDir + controller + ".js");
+        let controllerMain = require("./processing/controller.js");
+        let ControllerDatas = controllerMain.Controller({data:datas, controllerName:controller})
+        response.render(viewsDir + vue + ".ejs", { Controller: ControllerDatas, PageTitle: name_page });
         response.end();
-    }
+        beautyLogs.bLine(true)
+        /**
+         * Gestion des requets : POST ou GET envoyer
+         */
 
+        //ControllerDatas = await controllerMain.Controller(datas);
+
+        if (datas.Post != undefined)
+            console.log('Gestionnaire de Requête -DATA POST- :', ControllerDatas);
+        else if (datas.Get != undefined)
+            console.log('Gestionnaire de Requête -DATA GET- :', ControllerDatas);
+        else if (datas.Get != undefined && datas.Post != undefined)
+            console.log('Gestionnaire de Requête -DATA POST & GET :', ConControllerDatastroller);
+
+        // After taken the Controller Datas and other create by the user 
+        // everything need to be send to the views.
+        // If the user asked for a redirections or not the choice mater here.
+        if (ControllerDatas.use_redirect && ControllerDatas.url_Redirect != undefined) {
+            console.log(`Gestionnaire de Requête -REDIRECT- :${typeof(ControllerDatas)}`);
+
+            let targetUrl = (typeof(ControllerDatas.url_Redirect) != "undefined" ? ControllerDatas.url_Redirect : "/");
+
+            if (!ControllerDatas.persistence) {
+                ControllerDatas = undefined;
+            }
+
+            request.body = controller;
+            response.redirect(targetUrl);
+            response.end();
+        } else if (ControllerDatas.use_redirect && ControllerDatas.url_Redirect == undefined || ControllerDatas.use_redirect == false && ControllerDatas.persistence) {
+            console.log('Gestionnaire de Requête -RENDER DATA- :', ControllerDatas);
+            beautyLogs.bLine()
+
+            beautyLogs.bLine()
+            console.log("Controller : ")
+            response.render(viewsDir + vue + ".ejs", { Controller: ControllerDatas, PageTitle: name_page });
+            controller = "";
+            response.end();
+            beautyLogs.bLine()
+        }
+
+    }
 }
+
+
 exports.gestionnaireRequetes = gestionnaireRequetes;
