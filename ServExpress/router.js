@@ -2,6 +2,7 @@ const fs = require('fs')
 const gestreq = require("./gestionnaireRequetes");
 const outils = require("./outil");
 const beautyLogs = require('./helper/beautyLogs.js/main.js');
+const handleError = require('./module/error/handleError.js')
 
 let urlValide = false;
 
@@ -90,27 +91,8 @@ async function router(request, response, pathname, nbreq) {
         else if (controller == false && vue == false)
             error = "Impossible de trouver n'y le controller n'y la vue";
             beautyLogs.bLine(true)
-        callError(error)
+        handleError.callError(error)
     }
-
-    async function callError(error)
-    {
-        // let controllerRequest = require("../ServExpress/erreur/handle_error.js");
-        // let ControllerDatas = await controllerRequest.Controller();
-        console.log("\n!----------------------------------!");
-        console.group();
-        console.warn("Impossible de trouver la ressource demander.")
-        console.log(`Informations : controller-[${controller}], vue-[${vue}], url-[${pathname}], error message-[${error}]`)
-        console.log('Request :', request.params);
-        console.log('Response :', response.params);
-        console.groupEnd();
-        console.log("!----------------------------------!\n");
-
-        response.render("../ServExpress/erreur/index.ejs", { Message: error});
-        response.end();
-    }
-
-    exports.router.callError = callError;
 }
 
 exports.router = router;

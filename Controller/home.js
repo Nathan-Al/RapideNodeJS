@@ -1,12 +1,13 @@
 /**
- * @param {*} ControllerDatas All the parameter send by the server
+ * @param {Object} datas The datas send by the user from the view
+ * @param {Object} serverParameter Router parameter editable by the user (refere to doc for more detail)
+ * @param {Object} serverDatas The server default object to send datas to the view Ex : {name: 'Jhon Does'}
  */
- module.exports.Controller = async function Controller(context) {
-    let fonctionController = [];
-    //console.log("Controller : " + data)
-    let exemple = "Are ya winning son ?";
-    fonctionController.weirdquestion = exemple;
+ module.exports.Controller = async function Controller(datas, serverParameter, serverDatas) {
+    let exemple = undefined;
+    if(typeof(datas.Get)!='undefined')
+        exemple = "It's nice my son.";
+    serverDatas.weirdanswer = exemple;
 
-    // Even if it's empty always return ta variable
-    return context;
+    return serverDatas;
 };

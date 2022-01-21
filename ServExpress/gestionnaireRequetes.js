@@ -1,4 +1,5 @@
 const beautyLogs = require('./helper/beautyLogs.js/main.js');
+const handleError = require('./module/error/handleError.js')
 
 /**
  * 
@@ -6,12 +7,12 @@ const beautyLogs = require('./helper/beautyLogs.js/main.js');
  * @param {*} response Reponse serveur automatiquement envoyer pour traitement
  * @param {String} vue Vue envoyer par le router. R pour Request Views
  * @param {String} controller Controller envoyer par le router. R pour Request Controller
- * @param {String} name_page The page name given by the user
+ * @param {String} pageName The page name given by the user
  * @param {String} pathname The url asked by the navigator
  * @param {String} erreur The error message
  */
 
-async function gestionnaireRequetes(request, response, vue = null, controller = null, name_page = null, pathname = null, erreur = null) {
+async function gestionnaireRequetes(request, response, vue = null, controller = null, pageName = null, pathname = null, erreur = null) {
 
     let viewsDir = '../Views/'
 
@@ -38,53 +39,53 @@ async function gestionnaireRequetes(request, response, vue = null, controller = 
          */
         console.log(`Gestionnaire de Requête -Call Controller-`);
         //let controllerMain = require(controllerDir + controller + ".js");
-        let controllerMain = require("./processing/controller.js");
-        let ControllerDatas = controllerMain.Controller({data:datas, controllerName:controller})
-        response.render(viewsDir + vue + ".ejs", { Controller: ControllerDatas, PageTitle: name_page });
-        response.end();
-        beautyLogs.bLine(true)
+        let controllerMain = require("./module/controller.js");
+        let controllerDatas = await controllerMain.Controller({data:datas, controllerName:controller})
+
         /**
          * Gestion des requets : POST ou GET envoyer
          */
-
-        //ControllerDatas = await controllerMain.Controller(datas);
-
         if (datas.Post != undefined)
-            console.log('Gestionnaire de Requête -DATA POST- :', ControllerDatas);
+            console.log('Gestionnaire de Requête -DATA POST- :', controllerDatas);
         else if (datas.Get != undefined)
-            console.log('Gestionnaire de Requête -DATA GET- :', ControllerDatas);
+            console.log('Gestionnaire de Requête -DATA GET- :', controllerDatas);
         else if (datas.Get != undefined && datas.Post != undefined)
-            console.log('Gestionnaire de Requête -DATA POST & GET :', ConControllerDatastroller);
+            console.log('Gestionnaire de Requête -DATA POST & GET :', controllerDatas);
 
         // After taken the Controller Datas and other create by the user 
         // everything need to be send to the views.
         // If the user asked for a redirections or not the choice mater here.
-        if (ControllerDatas.use_redirect && ControllerDatas.url_Redirect != undefined) {
-            console.log(`Gestionnaire de Requête -REDIRECT- :${typeof(ControllerDatas)}`);
+        if (controllerDatas.use_redirect && controllerDatas.url_Redirect != undefined) {
+            console.log(`Gestionnaire de Requête -REDIRECT- :${typeof(controllerDatas)}`);
 
-            let targetUrl = (typeof(ControllerDatas.url_Redirect) != "undefined" ? ControllerDatas.url_Redirect : "/");
+            let targetUrl = (typeof(controllerDatas.url_Redirect) != "undefined" ? controllerDatas.url_Redirect : "/");
 
-            if (!ControllerDatas.persistence) {
-                ControllerDatas = undefined;
+            if (!controllerDatas.persistence) {
+                controllerDatas = undefined;
             }
 
             request.body = controller;
             response.redirect(targetUrl);
             response.end();
-        } else if (ControllerDatas.use_redirect && ControllerDatas.url_Redirect == undefined || ControllerDatas.use_redirect == false && ControllerDatas.persistence) {
-            console.log('Gestionnaire de Requête -RENDER DATA- :', ControllerDatas);
+        } else if (controllerDatas.use_redirect && controllerDatas.url_Redirect == undefined || controllerDatas.use_redirect == false) {
+            console.log('Gestionnaire de Requête -RENDER DATA- :', controllerDatas);
             beautyLogs.bLine()
 
             beautyLogs.bLine()
             console.log("Controller : ")
-            response.render(viewsDir + vue + ".ejs", { Controller: ControllerDatas, PageTitle: name_page });
+            response.render(viewsDir + vue + ".ejs", controllerDatas, {VR : controllerDatas, pageName });
             controller = "";
             response.end();
             beautyLogs.bLine()
+        } else {
+            response.render(viewsDir + vue + ".ejs", {VR : controllerDatas, pageName});
+            response.end();
+            beautyLogs.bLine(true)
         }
 
+    } else {
+        handleError.callError(error)
     }
 }
-
 
 exports.gestionnaireRequetes = gestionnaireRequetes;

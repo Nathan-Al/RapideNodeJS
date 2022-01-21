@@ -6,7 +6,7 @@
         <link type="text/css" rel="stylesheet" href='Css\base.css'>
         <link type="text/css" rel="stylesheet" href='Css\home.css'>
         <title>
-            <%= PageTitle %>
+            <%= pageName %>
         </title>
     </head>
 
@@ -17,7 +17,7 @@
             </div>
             <div class="nav-center center">
                 <h1 class="center">
-                    Bienvenue sur la page <%= PageTitle %>
+                    Bienvenue sur la page <%= pageName %>
                 </h1>
             </div>
             <div class="nav-end center">
@@ -47,8 +47,8 @@
                                     <td>
                                         <div class="td-div">
                                             <h3>Server state : </h3>
-                                            <p><% if(typeof Controller.serverState != 'undefined') {%>
-                                                <%= Controller.serverState %>
+                                            <p><% if(typeof VR.serverState != 'undefined') {%>
+                                                <%= VR.serverState %>
                                                     <%}%>
                                             </p>
                                         </div>
@@ -56,8 +56,8 @@
                                     <td>
                                         <div class="td-div">
                                             <h3>Connected to the database : </h3>
-                                            <p><% if(typeof Controller.databaseState != 'undefined') {%>
-                                                <%= Controller.databaseState %>
+                                            <p><% if(typeof VR.databaseState != 'undefined') {%>
+                                                <%= VR.databaseState %>
                                                     <%}%>
                                             </p>
                                         </div>
@@ -84,13 +84,10 @@
                                             </div>
                                             <div class="card-center">
                                                 <p class="m-0 p-1">
-                                                    <% if(typeof Controller.weirdquestion != 'undefined') {%>
-                                                        <%= Controller.weirdquestion %>
+                                                    <% if(typeof VR.weirdquestion != 'undefined') {%>
+                                                        <%= VR.weirdquestion %>
                                                             <%};%>
                                                 </p>
-                                                <% if(typeof Controller.dataPost != 'undefined') {%>
-                                                    <%= Controller.dataPost.info %>
-                                                        <%}%>
                                             </div>
         
                                             <div class="card-end">
@@ -109,9 +106,10 @@
                                             </div>
                                             <div class="card-center">
                                                 <p class="m-0 p-1">Hey Father i saw a man flying in the sky today !</p>
-        
-                                                <% if(typeof Controller.dataGet != 'undefined') {%>
-                                                    <%= Controller.dataGet.info %>
+
+                                                <% if(typeof VR.weirdanswer != 'undefined') {%>
+                                                    <hr>
+                                                    <%=VR.weirdanswer %>
                                                         <%}%>
                                             </div>
                                             <div class="card-end">

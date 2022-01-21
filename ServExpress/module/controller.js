@@ -13,12 +13,14 @@ const { Controller } = require("./class/controller");
  */
 exports.Controller = async function controller(RequestesObject) {
 
-    let controller = new Controller();
-    /**
-     * @description A Array with all the variable send by the user for the view to process it
-     */
+    let controllerDir = '../../Controller/';
 
-    controller.fonction = fonctionController = [];
+    /**
+     * @type {Controller} Class
+     * @description Object who contain the informations send by user controller
+     */
+    let controller = new Controller();
+
     /**
      * @param {boolean} use_redirect If the user want to redirect the page to another one
      * @param {string} urlRedirect The url the user choose to redirect the page
@@ -30,12 +32,11 @@ exports.Controller = async function controller(RequestesObject) {
         persistence:true,
     };
 
-    let controllerDir = '../../Controller/';
-
     beautyLogs.bLine()
-    //console.log("Controller", globalParameter, "fonctionController", await this)
+    console.log("Main Controller")
     let controllerRequest = require(controllerDir + RequestesObject.controllerName + ".js");
-    let ControllerDatas = await controllerRequest.Controller(controller);
+    controller = await controllerRequest.Controller(RequestesObject.data, controller.parameter, controller.datas);
+    beautyLogs.bLine()
 
-    return ControllerDatas;
+    return controller;
 }
