@@ -3,12 +3,31 @@
   {
    "name": "home",
    "liens": [
+    "",
     "/",
     "accueil",
     "home"
    ],
    "Views": "home",
    "Controller": "home"
+  },
+  {
+   "name": "test",
+   "liens": [
+    "test"
+   ],
+   "Views": "test",
+   "Controller": "test",
+   "css": "test"
+  },
+  {
+   "name": "test",
+   "liens": [
+    "test"
+   ],
+   "Views": "test",
+   "Controller": "test",
+   "css": "test"
   }
  ]
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang='fr'>
+<head>
+   <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="Css\base.css">
+    <title>
+        <%= PageTitle %>
+    </title>
+</head>
+<body>
+    <nav>
+        <h1>Bienvenue sur la page <%= PageTitle %> </h1>
+    </nav>
+
+    <div class='container'>
+        <h1>Commençons ?</h1>
+        <div class="content">
+            <%= Controller.data %>
+        </div>
+        <div class="content">
+            <form action="" method="get">
+                <input type="hidden" name="repond" value="Receive">
+                <input type="submit" value="envoyer">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
