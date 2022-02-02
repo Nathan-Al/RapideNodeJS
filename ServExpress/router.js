@@ -1,8 +1,8 @@
 const fs = require('fs')
 const gestreq = require("./gestionnaireRequetes");
-const outils = require("./outil");
-const beautyLogs = require('./helper/beautyLogs.js/main.js');
-const handleError = require('./module/error/handleError.js')
+const filesGestion = require("./module/Tools/files");
+const beautyLogs = require('./module/BeautyLogs/main.js');
+const handleError = require('./module/Error/handleError.js')
 
 let urlValide = false;
 
@@ -54,11 +54,11 @@ async function router(request, response, pathname, nbreq) {
         for (i = 0; i < tabs['liens'].length; i++) {
             if (tabs['liens'][i] == pathname_slice) {
                 // Verifier l'existence de la vue
-                let existeVue = await outils.NameSpace_LecteurFichiers.Fichier.VerifyFile('Views/' + tabs['Views'] + ".ejs");
+                let existeVue = await filesGestion.LecteurFichiers.Fichier.VerifyFile('Views/' + tabs['Views'] + ".ejs");
                 if (existeVue && typeof(existeVue) != 'object')
                     vue = true;
                 // Verifier l'existence du controller
-                let existeCont = await outils.NameSpace_LecteurFichiers.Fichier.VerifyFile('Controller/' + tabs['Controller'] + ".js");
+                let existeCont = await filesGestion.LecteurFichiers.Fichier.VerifyFile('Controller/' + tabs['Controller'] + ".js");
                 if (existeCont && typeof(existeCont) != 'object')
                     controller = true;
                 break;

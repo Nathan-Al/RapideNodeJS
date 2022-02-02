@@ -1,5 +1,5 @@
-const beautyLogs = require('./helper/beautyLogs.js/main.js');
-const handleError = require('./module/error/handleError.js')
+const beautyLogs = require('./module/BeautyLogs/main.js');
+const handleError = require('./module/Error/handleError.js')
 
 /**
  * 
@@ -39,7 +39,7 @@ async function gestionnaireRequetes(request, response, vue = null, controller = 
          */
         console.log(`Gestionnaire de Requête -Call Controller-`);
         //let controllerMain = require(controllerDir + controller + ".js");
-        let controllerMain = require("./module/controller.js");
+        let controllerMain = require("./controller.js");
         let controllerDatas = await controllerMain.Controller({data:datas, controllerName:controller})
 
         /**

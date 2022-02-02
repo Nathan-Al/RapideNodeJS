@@ -3,23 +3,22 @@ const favicon = require('serve-favicon');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser')
-const beautyLogs = require('./helper/beautyLogs.js/main.js');
+const beautyLogs = require('./module/BeautyLogs/main.js');
 const routeur = require('./router.js');
-const serveur_dis = require('./connexion');
+const serveur_dis = require('./module/Database/connexion');
 
 /**
  * @description Démarre le seveur NodeJS
  * @param {Number} port Port a déffinir dans l'index
  */
 async function start(port) {
-    let bddCon = undefined;
-    let bddResponse ='';
-    let pathname = null;
+    let bddCon , pathname = undefined;
+    let bddResponse = '';
     let nbreq = 0;
 
     bddCon = await serveur_dis.MySQLCo();
-    app.use(function WaitOnRequest(request, response, next) {
-        pathname = request.url;
+    app.use(function WaitOnRequest(requestMain, responseMain, next) {
+        pathname = requestMain.url;
 
         console.log(`Serveur : nbreq-[${nbreq}], requetes-[${pathname}]`);
 
@@ -66,7 +65,7 @@ async function start(port) {
     beautyLogs.bLogs(
         'Serveur : Demarrage serveur port '+ port +' url-[http://localhost:4444]\n'+
         'Version : 1.0.0\n'+
-        'Database connection : '+ bddResponse + " | " + bddCon + '\n'+
+        'Database connection : '+ bddResponse + '\n'+
         'You can stop the server by taping Ctrl + c')
 }
 
