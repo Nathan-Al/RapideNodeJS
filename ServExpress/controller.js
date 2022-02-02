@@ -1,5 +1,5 @@
-const beautyLogs = require("../helper/beautyLogs.js/main");
-const { Controller } = require("./class/controller");
+const beautyLogs = require("./module/BeautyLogs/main");
+const { Controller } = require("./class/Controller");
 /**
  * 
  * @param {Object} RequestesObject 
@@ -13,7 +13,7 @@ const { Controller } = require("./class/controller");
  */
 exports.Controller = async function controller(RequestesObject) {
 
-    let controllerDir = '../../Controller/';
+    let controllerDir = '../Controller/';
 
     /**
      * @type {Controller} Class

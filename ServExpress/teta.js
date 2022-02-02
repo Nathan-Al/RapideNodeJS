@@ -1,15 +1,16 @@
 /**
  * COMMAND LINE
- * VERSION 1.0.2
+ * VERSION 1.0.2 (OBSOLETE)
  * DATE DE CREATION 27/09/2020
  * LICENSE OPEN SOURCE
  * CONTACT nathan.maserakan@gmail.com
+ * @deprecated
  */
 const process = require('process');
 const fs = require("fs")
 const rl = require('readline').createInterface(process.stdin, process.stdout);
-let tools = require("./outil.js");
-let normarlisation = require("./normalisations.js");
+let filesGestion = require("./module/Tools/files.js");
+let normarlisation = require("./module/Tools/normalisations.js");
 let nettoyage = normarlisation.NameSpace_Normalisations.Chaine;
 let sous_menu = false;
 
@@ -60,9 +61,8 @@ rl.question('Hello and welcome to the command prompt ! You can type your command
  */
 function help() {
     console.log("--- HELP ---");
-    
     console.log("- %cnp%c - To create a new page \n- %cd%c - Give you the possibility to delete a page \n- %cx%c - Close the command prompt", 'color:blue;', 'color:blue;', 'color:blue;', 'color:blue;', 'color:blue;', 'color:blue;');
-    return;
+    return true;
 }
 
 async function NewPage() {
@@ -72,101 +72,86 @@ async function NewPage() {
     rl.prompt();
 
     await rl.on('line', async(raw_diff) => {
-        diff = nettoyage.NettoyageCharactere_1(raw_diff)
+        let diff = nettoyage.NettoyageCharactere_1(raw_diff)
         if (diff === 'yes' || diff === 'y') {
             let nom_page;
             let nom_views
             let nom_controller;
             let nom_css;
             let nom_liens = [];
-            let veri_page = false;
-            let veri_views = false;
-            let veri_controller = false;
-            let veri_css = false;
-            let veri_liens = false;
 
             /**
              * Gestion PAGE
              */
-            if (veri_page == false)
-                rl.question('What do you want to name the page ? : ', (raw_name_ppa) => {
-                    nom_page = nettoyage.NettoyageCharactere_1(raw_name_ppa);
-                    veri_page == true;
+            rl.question('What do you want to name the page ? : ', (raw_name_ppa) => {
+                nom_page = nettoyage.NettoyageCharactere_1(raw_name_ppa);
 
-                    /**
-                     * Gestion CONTROLER
-                     */
-                    if (veri_controller == false)
-                        rl.question('Give the controller name : ', (raw_name_ct) => {
-                            nom_controller = nettoyage.NettoyageCharactere_1(raw_name_ct)
-                            veri_controller = true;
+                /**
+                 * Gestion CONTROLER
+                 */
+                    rl.question('Give the controller name : ', (raw_name_ct) => {
+                        nom_controller = nettoyage.NettoyageCharactere_1(raw_name_ct)
 
-                            /**
-                             * Gestion VIEWS
-                             */
-                            if (veri_views == false)
-                                rl.question('Give the view name : ', (raw_name_vus) => {
-                                    nom_views = nettoyage.NettoyageCharactere_1(raw_name_vus)
-                                    veri_views = true;
+                        /**
+                         * Gestion VIEWS
+                         */
+                            rl.question('Give the view name : ', (raw_name_vus) => {
+                                nom_views = nettoyage.NettoyageCharactere_1(raw_name_vus)
 
-                                    /**
-                                     * Gestion CSS
-                                     */
-                                    if (veri_css == false)
-                                        rl.question('Give the css name : ', (raw_name_css) => {
-                                            nom_css = nettoyage.NettoyageCharactere_1(raw_name_css);
-                                            veri_css = true;
+                                /**
+                                 * Gestion CSS
+                                 */
+                                    rl.question('Give the css name : ', (raw_name_css) => {
+                                        nom_css = nettoyage.NettoyageCharactere_1(raw_name_css);
 
-                                            /**
-                                             * Gestion URLS
-                                             */
-                                            rl.question("Do you want to have multiple url ? (yes/no) : (no) ", (url_ques) => {
-                                                if (url_ques === "yes" && url_ques != "" && url_ques != "no") {
-                                                    rl.question("Give the urls name : ", (raw_name_lli) => {
-                                                        nom_liens = nettoyage.NettoyageCharactere_1(raw_name_lli).split(" ");
-                                                        veri_liens = true;
+                                        /**
+                                         * Gestion URLS
+                                         */
+                                        rl.question("Do you want to have multiple url ? (yes/no) : (no) ", (url_ques) => {
+                                            if (url_ques === "yes" && url_ques != "" && url_ques != "no") {
+                                                rl.question("Give the urls name : ", (raw_name_lli) => {
+                                                    nom_liens = nettoyage.NettoyageCharactere_1(raw_name_lli).split(" ");
 
-                                                        console.log("Summarize actions : Page name = " + nom_page, "view name = " + nom_views, "controller name = " + nom_controller, "css name = " + nom_css, "url(s) name = " + nom_liens);
-                                                        rl.question("All good ? (oui/no) : (yes) ", (final) => {
-                                                            if (final == "yes" || final == "") {
-                                                                tools.NameSpace_LecteurFichiers.Fichier.creer("Controller", nom_controller, "js", data_controller(nom_page));
-                                                                tools.NameSpace_LecteurFichiers.Fichier.creer("Views", nom_views, "ejs", data_view(nom_views));
-                                                                tools.NameSpace_LecteurFichiers.Fichier.creer("Public\\Css", nom_css, "css", data_css());
-                                                                Edit_Json_New_Page(nom_page, nom_views, nom_controller, nom_liens, nom_css);
-                                                                console.log("Task perform")
-                                                                rl.close();
-                                                            } else {
-                                                                console.log("Mission abort")
-                                                                rl.close();
-                                                            }
-                                                        });
+                                                    console.log("Summarize actions : Page name = " + nom_page, "view name = " + nom_views, "controller name = " + nom_controller, "css name = " + nom_css, "url(s) name = " + nom_liens);
+                                                    rl.question("All good ? (oui/no) : (yes) ", (final) => {
+                                                        if (final == "yes" || final == "") {
+                                                            filesGestion.NameSpace_LecteurFichiers.Fichier.creer("Controller", nom_controller, "js", data_controller());
+                                                            filesGestion.NameSpace_LecteurFichiers.Fichier.creer("Views", nom_views, "ejs", data_view());
+                                                            filesGestion.NameSpace_LecteurFichiers.Fichier.creer("Public\\Css", nom_css, "css", data_css());
+                                                            Edit_Json_New_Page(nom_page, nom_views, nom_controller, nom_liens, nom_css);
+                                                            console.log("Task perform")
+                                                            rl.close();
+                                                        } else {
+                                                            console.log("Mission abort")
+                                                            rl.close();
+                                                        }
                                                     });
-                                                } else if (url_ques === "" || url_ques === "no") {
-                                                    rl.question("Give the url name : ", (raw_url_resp) => {
-                                                        url_resp = nettoyage.NettoyageCharactere_1(raw_url_resp);
-                                                        nom_liens = url_resp;
-                                                        veri_liens = true;
-                                                        console.log("Summarize actions : Page name = " + nom_page, "| view name = " + nom_views,"| css name = " + nom_css,"| controller name = " + nom_controller, "| url(s) name = " + nom_liens);
-                                                        rl.question("All good ? (yes/no) : (yes) ", (final) => {
-                                                            if (final == "yes" || final == "") {
-                                                                tools.NameSpace_LecteurFichiers.Fichier.creer("Controller", nom_controller, "js", data_controller(nom_controller));
-                                                                tools.NameSpace_LecteurFichiers.Fichier.creer("Views", nom_views, "ejs", data_view(nom_views));
-                                                                tools.NameSpace_LecteurFichiers.Fichier.creer("Public\\Css", nom_css, "css", data_css());
-                                                                Edit_Json_New_Page(nom_page, nom_views, nom_controller, nom_liens, nom_css);
-                                                                console.log("Task perform")
-                                                                rl.close();
-                                                            } else {
-                                                                console.log("Mission abort")
-                                                                rl.close();
-                                                            }
-                                                        });
+                                                });
+                                            } else if (url_ques === "" || url_ques === "no") {
+                                                rl.question("Give the url name : ", (raw_url_resp) => {
+                                                    nom_liens = nettoyage.NettoyageCharactere_1(raw_url_resp);
+                                                    console.log("Summarize actions : Page name = " + nom_page, "| view name = " + nom_views,"| css name = " + nom_css,"| controller name = " + nom_controller, "| url(s) name = " + nom_liens);
+
+                                                    rl.question("All good ? (yes/no) : (yes) ", (final) => {
+                                                        if (final == "yes" || final == "") {
+                                                            filesGestion.NameSpace_LecteurFichiers.Fichier.creer("Controller", nom_controller, "js", data_controller());
+                                                            filesGestion.NameSpace_LecteurFichiers.Fichier.creer("Views", nom_views, "ejs", data_view());
+                                                            filesGestion.NameSpace_LecteurFichiers.Fichier.creer("Public\\Css", nom_css, "css", data_css());
+                                                            Edit_Json_New_Page(nom_page, nom_views, nom_controller, nom_liens, nom_css);
+                                                            console.log("Task perform")
+                                                            rl.close();
+                                                        } else {
+                                                            console.log("Mission abort")
+                                                            rl.close();
+                                                        }
                                                     });
-                                                };
-                                            });
+                                                });
+                                            };
                                         });
-                                });
-                        });
+                                    });
+                            });
                     });
+                });
         } else if (diff == "" || diff == "no") {
             console.log('Give the page name : ');
             rl.on('line', async(name) => {
@@ -174,9 +159,9 @@ async function NewPage() {
                 console.log("Summarize actions : Page name = " + name, "| views name = " + name, "| controller name = " + name, "| url name = " + name);
                 rl.question("Tout est bon ? (oui/no) : (yes) ", async(final) => {
                     if (final == "yes" || final == "") {
-                        await tools.NameSpace_LecteurFichiers.Fichier.creer("Controller", name, "js", data_controller(name));
-                        await tools.NameSpace_LecteurFichiers.Fichier.creer("Views", name, "ejs", data_view(name));
-                        await tools.NameSpace_LecteurFichiers.Fichier.creer("Public/Css", name, "css", data_css());
+                        await filesGestion.NameSpace_LecteurFichiers.Fichier.creer("Controller", name, "js", data_controller());
+                        await filesGestion.NameSpace_LecteurFichiers.Fichier.creer("Views", name, "ejs", data_view());
+                        await filesGestion.NameSpace_LecteurFichiers.Fichier.creer("Public/Css", name, "css", data_css());
                         Edit_Json_New_Page(name, name, name, name, name)
                         rl.close();
                     } else {
@@ -205,12 +190,9 @@ async function SuppPage()
     let routeCss;
 
     rl.question('Hello what page do you want to remove ? : Exemple (lala) ', (raw_rep) => {
-        //let tab = Get_JSON("test/test.json"/*'ServExpress/urls.json'*/);
         let tab = Get_JSON('ServExpress/urls.json');
-        //console.log(tab.route[0])
-        for (i = 0; i < tab.route.length; i++)
+        for (let i = 0; i < tab.route.length; i++)
         {
-            //console.log(tab.route[i].name);
             if(tab.route[i].name == raw_rep)
             {
                nomCont = tab.route[i].Controller;
@@ -234,21 +216,21 @@ async function SuppPage()
                 if(raw_rep_2!="" && raw_rep_2!="no" && raw_rep_2=="yes" && raw_rep_2!=undefined)
                 {
 
-                    if(await tools.NameSpace_LecteurFichiers.Fichier.VerifyFile(routeViews) == true)
+                    if(await filesGestion.NameSpace_LecteurFichiers.Fichier.VerifyFile(routeViews) == true)
                     {
-                        await tools.NameSpace_LecteurFichiers.Fichier.supprimer(routeViews);
+                        await filesGestion.NameSpace_LecteurFichiers.Fichier.supprimer(routeViews);
                         okView = true;
                     }
                         
-                    if(await tools.NameSpace_LecteurFichiers.Fichier.VerifyFile(routeController) == true)
+                    if(await filesGestion.NameSpace_LecteurFichiers.Fichier.VerifyFile(routeController) == true)
                     {
-                        await tools.NameSpace_LecteurFichiers.Fichier.supprimer(routeController);
+                        await filesGestion.NameSpace_LecteurFichiers.Fichier.supprimer(routeController);
                         okCont = true;
                     }
                         
-                    if(await tools.NameSpace_LecteurFichiers.Fichier.VerifyFile(routeCss) == true)
+                    if(await filesGestion.NameSpace_LecteurFichiers.Fichier.VerifyFile(routeCss) == true)
                     {
-                        await tools.NameSpace_LecteurFichiers.Fichier.supprimer(routeCss);
+                        await filesGestion.NameSpace_LecteurFichiers.Fichier.supprimer(routeCss);
                         okCss = true;
                     }
                     
@@ -258,7 +240,7 @@ async function SuppPage()
 
                     tab.route.splice(index,1);
                     let data = JSON.stringify(tab, null, 1);
-                    //fs.writeFileSync('test/test.json', data);
+
                     fs.writeFileSync('ServExpress/urls.json', data);
                     rl.close();
                 }else
@@ -304,8 +286,7 @@ function Edit_Json_New_Page(name, Views, Controller, links, css) {
 function Get_JSON(path)
 {
     let fichier = fs.readFileSync(path);
-    let json_parse = JSON.parse(fichier);
-    return json_parse;
+    return JSON.parse(fichier);
 }
 
 rl.setPrompt(cliConfig.promptPrefix);

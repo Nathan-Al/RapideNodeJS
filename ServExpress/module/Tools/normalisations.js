@@ -1,4 +1,4 @@
-var NameSpace_Normalisations = {
+var Normalisations = {
     'name': 'Normalisations . js',
     'Date de création ': '22/03/2020',
     'Utilisations': 'Nettoyage de chaine de caractère ou normalisation de données',
@@ -32,4 +32,4 @@ var NameSpace_Normalisations = {
     }
 }
 
-exports.NameSpace_Normalisations = NameSpace_Normalisations;
+exports.NameSpace_Normalisations = Normalisations;
