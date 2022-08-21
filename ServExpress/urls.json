@@ -1,33 +1,41 @@
 {
- "route": [
-  {
-   "name": "home",
-   "liens": [
-    "",
-    "/",
-    "accueil",
-    "home"
-   ],
-   "Views": "home",
-   "Controller": "home"
-  },
-  {
-   "name": "test",
-   "liens": [
-    "test"
-   ],
-   "Views": "test",
-   "Controller": "test",
-   "css": "test"
-  },
-  {
-   "name": "test",
-   "liens": [
-    "test"
-   ],
-   "Views": "test",
-   "Controller": "test",
-   "css": "test"
+ "route": {
+    "user": [
+      {
+        "name": "home",
+        "liens": [
+          "",
+          "/",
+          "accueil",
+          "home"
+        ],
+        "views": "home.ejs",
+        "controller": "home.js"
+      },
+      {
+        "name": "test",
+        "liens": [
+          "test"
+        ],
+        "views": "test.js",
+        "controller": "test.js"
+      },
+      {
+        "name": "manathan",
+        "liens": [
+        "manathan"
+        ],
+        "views": "manathan.html",
+        "controller": "test.js"
+      }
+    ],
+    "internal": [
+      {
+        "name": "error",
+        "liens": [],
+        "views": "error.ejs",
+        "controller": ""
+      }
+    ]
   }
- ]
 }
