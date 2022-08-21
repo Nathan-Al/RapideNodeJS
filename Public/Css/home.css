@@ -61,16 +61,9 @@ h4
     font-size: 1.2em;
 }
 
-.conteneur
-{
-    width: auto;
-    min-height: 1%;
-}
-
 .conteneur-w
 {
-    width: auto;
-    min-height: 1%;
+
     background-color: #ffffffcc;
 }
 

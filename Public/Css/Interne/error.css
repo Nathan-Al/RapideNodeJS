@@ -7,8 +7,7 @@ body {
     background-color: rgb(184, 184, 184);
 }
 
-hr
-{
+hr {
     background-color: black;
     color: black;
     width: 100%;
@@ -21,103 +20,114 @@ hr
     border-width: 0;
 }
 
-.center
+h1
 {
-    display: flex;
-    justify-content: center;
-    justify-self: center;
-    justify-items: center;
-    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
-.center-column
+h2
 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    justify-self: center;
-    justify-items: center;
-    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
-.content
+h3
 {
+    margin: 0;
+    padding: 0;
+}
+
+h4
+{
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    height: 90vh
+}
+
+
+.navigation-bar {
+    display: flex;
+    background-color: #f3c500;
+    width: 100%;
+    height: 10vh;
+    margin: 0%;
+    box-shadow: 0px 5px 10px rgb(0, 0, 0);
+}
+
+.nav-start {
+    width: 30%;
     padding: 1%;
-    font-size: large;
-}
-
-.box
-{
-    padding: 1%;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgba(128, 128, 128, 0.685);
-    box-shadow: 0px 0px 2px rgba(128, 128, 128, 0.658);
-}
-
-.w-full
-{
-    width: 100% !important;
-}
-
-.m-0
-{
-    margin: 0!important;
-}
-
-.p-0
-{
-    padding: 0!important;
-}
-
-.m-1
-{
-    margin: 1%!important;
-}
-
-.p-1
-{
-    padding: 1%!important;
-}
-
-.card
-{
-    width: auto;
-    height: auto;
-    background-color: antiquewhite;
-    border: solid 1px black;
-    margin: 1%;
-    padding: 2%;
-}
-
-.card-content
-{
     display: flex;
-    flex-direction: column;
-    max-height: 100%;
-    max-width: 100%;
-    height: 100%;
+    justify-content: start;
+}
+.nav-center {
+    width: 40%;
+    padding: 1%;
 }
 
-.card-title
-{
-    height: 20%;
-    margin: 2%!important;
-    padding: 0!important;
-    border-bottom: solid 1px black;
+.nav-end {
+    width: 30%;
+    padding: 1%;
+    display: flex;
+    justify-content: end;
 }
 
-.card-center
-{
-    height: 70%;
-    margin: 0!important;
-    padding: 0!important;
+.div-info {
+    height: 20vh;
+}
+
+.msg-conteneur {
     background-color: white;
+    min-height: 70vh;
 }
 
-.card-end
-{
-    height: auto;
-    margin: 2%!important;
-    padding: 0!important;
+.div-error-title {
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: white;
 }
 
+.div-error-title h1 {
+    color: rgb(168, 0, 0);
+}
+
+.div-server-msg {
+    height: 69vh;
+    background-color: rgb(241 241 241);
+}
+
+.title-server-msg {
+    color: black;
+    background: cornsilk;
+    border-bottom: 1px solid #00000026;
+    height: 10%;
+    display: flex;
+    justify-self: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.title-server-msg h2 {
+    padding: 1%;
+}
+
+.server-msg {
+    overflow-y: scroll;
+    display: flex;
+    height: 90%;
+}
+
+.server-msg .conteneur-f-w p {
+    padding-left: 1%;
+}
+
+.conteneur-f-w div {
+    background-color: white;
+    margin: 1%;
+}
