@@ -1,9 +1,10 @@
 {
-  "name": "RapideNodeJS",
+  "name": "rapidenodejs",
   "version": "1.0.0",
   "dependencies": {
     "body-parser": "^1.19.0",
     "child_process": "^1.0.2",
+    "docker": "^1.0.0",
     "ejs": "^3.1.8",
     "express": "^4.17.2",
     "favicon": "0.0.2",
@@ -15,10 +16,10 @@
     "sqlite-sync": "^0.3.9",
     "sqlite3": "^5.0.2"
   },
-  "description": "Demarrer NodeJS avec Express et qu'elle petite dependance pour se faciliter la vie",
+  "description": "NodeJS avec ExpressJS et quelque petite dependance pour se faciliter la vie",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ServExpress/index.js",
+    "dev": "nodemon ServExpress/index.js dev",
     "start": "node ServExpress/index.js",
     "teta_old": "node ServExpress/teta.js",
     "teta": "python ServExpress/Teta/teta.py"
