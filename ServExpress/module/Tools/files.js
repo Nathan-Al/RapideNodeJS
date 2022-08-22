@@ -3,13 +3,16 @@ let fsPromises = require('fs').promises;
 const child_proc = require('child_process');
 const os = require('os');
 
+/**
+ * @name LecteurFichiers
+ * @description Fonction with all the function handle files
+ * @typedef {Object} LecteurFichiers
+ * @property {Object} Dossier Everything that concern the use of dirs
+ * @property {Object} Fichier Everything that concern the use of files
+ *
+ * @created 22/03/2020
+ */
 const LecteurFichiers = {
-    'name': 'Lecteur Fichiers . js',
-    'Date de création ': '22/03/2020',
-    'Utilisations': 'Fichiers classant toute fonction de lecture de document/dossier',
-    'langage': 'JavaScript',
-    'langue': 'Français',
-
     Dossier: {
         ScanDossier: async function ScanDosier(liensDossier, extensions) {
             //La valeurs extensions ne peut être que true ou false, elle détermine si les fichier && les dossier doivent être lister
@@ -195,14 +198,41 @@ const LecteurFichiers = {
                 });
             }
         },
-        VerifyFile: async function VerifierExisteFiles(path) {
+        /**
+         * Verify that a file exist
+         * 
+         * @typedef {Object} options
+         * @property {array} exts the possible different extenions that the files may have
+         * @param {options} options [exts:array]
+         * @param {String} path The full path were the file is
+         * @returns boolean | String
+        */
+        VerifyFile: async function VerifierExisteFiles(path, options = {exts:[]}) {
             try {
-                if (await fs.statSync(path))
+                if(options['exts'].length != 0) {
+                    for (const element in options['exts']) {
+                        if (await fs.existsSync(path+'.'+options['exts'][element]))
+                            return path+'.'+options['exts'][element];
+                    }
+                }
+
+                if (await fs.statSync(path)) {
                     return true;
+                }
             } catch (err) {
                 return false;
             }
         },
+        /**
+         * Function that allow to write in a file
+         * 
+         * @param {String} path 
+         * @param {String} datas 
+         * 
+         * @throw fs WriteStream Error
+         * 
+         * @returns boolean
+         */
         ecrire: async function EcrireDansFichiers(path, datas) {
             if (!fs.statSync(path)) {
                 if (err.code === 'EEXIST') {
@@ -214,14 +244,12 @@ const LecteurFichiers = {
                 let write = await fs.createWriteStream(path,{flags:'rs+'})
                 await write.write(datas, 'utf-8')
 
-                let k = write.on('end', async function() {
+                return write.on('end', async function() {
                         resolve(true);
                     }).on('error', async(err) => {
                         console.log("Erreur to read on data :: " + err);
                         throw err;
                     })
-
-                return k;
             }
         },
         supprimer : async function SupprimerFichiers(path)

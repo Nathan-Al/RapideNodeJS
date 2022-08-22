@@ -1,18 +1,21 @@
-/**
- * @name Normalisations 
- * @description Nettoyage de chaine de caractère ou normalisation de données
- * @type {Object}
- * @created 22/03/2020
- */
-const Normalisations = {
+var NameSpace_Normalisations = {
+    'name': 'Normalisations . js',
+    'Date de création ': '22/03/2020',
+    'Utilisations': 'Nettoyage de chaine de caractère ou normalisation de données',
+    'langage': 'JavaScript',
+    'langue': 'Français',
+
     Chaine: {
         NettoyageCharactere_1: function NettoyageCharac(variable) {
+            console.log(variable)
             variable = variable.trim();
-            let charac_a_enlever = ['\\', "/", ":", "*", "?", '"', "<", ">", "|", " ","\"",];
+            let charac_a_enlever = ['\\', "/", ":", "*", "?", '"', "<", ">", "|", " "];
             charac_a_enlever.forEach(function(value) {
                 variable = variable.replace(value, "");
             });
             variable = variable.trim();
+
+            console.log(variable)
             return variable;
         },
         MajusculePremiereLettre: function upperCaseFirstLetter(str) {
@@ -32,4 +35,4 @@ const Normalisations = {
     }
 }
 
-exports.NameSpace_Normalisations = Normalisations;
+exports.NameSpace_Normalisations = NameSpace_Normalisations;
