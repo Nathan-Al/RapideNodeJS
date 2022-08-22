@@ -1,4 +1,4 @@
-const Info = require("../module/ServerInfo/ServerInfo")
+const Info = require("../module/ServerInfo/class/ServerInfo")
 
 /**
  * @description Default helper Controller Cass, contain all default informations that the controller use

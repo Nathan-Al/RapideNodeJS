@@ -5,8 +5,13 @@
  * @param {Number} number The number of iterations you want for the '-' character
  */
 exports.bLogs = function main(message = 'logs msg', number = 40) {
+    let messageClean = ''
+    message.split('\n').forEach((item, index) => {
+        messageClean+=item.trim()+'\n'
+    })
+
     line(false, number)
-    console.log(message)
+    console.log(messageClean)
     line(true, number)
 }
 
