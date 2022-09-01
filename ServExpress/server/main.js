@@ -69,6 +69,10 @@ async function Main(meta) {
     }
 
     //Handle Error
+    // partie manquante les erreur 404
+    app.use((req, res, next) => {
+      next(require('http-errors')(404));
+    })
     app.use((error, req, res, next) => {
         errorHandler.main(res, 'General Error', error, 500)
     })
