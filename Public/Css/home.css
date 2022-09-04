@@ -121,3 +121,14 @@ h4
     margin: 2%!important;
     padding: 0!important;
 }
+
+.div-service {
+    display: flex;
+}
+
+.div-service p {
+    text-decoration: underline;
+    color: #1b5f81;
+    font-size: inherit;
+    font-weight: 600;
+}
