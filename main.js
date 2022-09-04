@@ -33,7 +33,7 @@ server.route(
 
 // 'app.set'
 /* server.set('key', value) */
-app.set('views', 'app');
+server.set('views', 'app');
 
 //app.param (in dev)
 /* server.param('param', (req,res,next,val)=>{}) */
