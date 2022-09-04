@@ -2,6 +2,8 @@ const handleError = require('../module/Error/main.js');
 const beautyLogs = require('../module/BeautyLogs/main');
 
 /**
+ * The rendering part have been separate from the requestmanager
+ * for future function and security test
  * 
  * @param {Object} response 
  * @param {String} view 
@@ -9,7 +11,7 @@ const beautyLogs = require('../module/BeautyLogs/main');
  * @param {String} error 
  */
 exports.rendering = async function(response, view, datas, error = false) {
-    beautyLogs.bLogs(`Rendering : ${error!=false?`Error Page-[${view}]`:view}`)
+    console.log(`Rendering : ${error!=false?`Error Page-[${view}]`:view}`)
     response.render(view, datas)
     response.end();
 }

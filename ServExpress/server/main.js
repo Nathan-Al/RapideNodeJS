@@ -4,8 +4,6 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 // ----------------------------
-// const logs = require('../service/GestiLogs/main')
-// const container = require('../service/container/main')
 const beautyLogs = require('../module/BeautyLogs/main');
 const routeur = require('./router.js');
 const serverInfo = require('../module/ServerInfo/main.js');
@@ -38,10 +36,9 @@ async function Main(meta) {
       }
 
     //todo plug the log service to server cmd log
-    //app.use(logs.Main(devMod))
     app.use(bodyParser.urlencoded({ extended: true }));
 
-    //Dossier de fichiers static
+    //Dir static files
     app.use(express.static(meta.media.staticDir, options));
     app.use(express.static('./Views'));
     app.use(favicon(meta.media.icon));
@@ -87,8 +84,8 @@ exports.Main = Main;
  */
 async function start(port, meta) {
 
-    const bddResponse = await database.verifyConnection(meta, 'ping')? 'Ok':'Error'
-
+    const bddResponse = await database.verifyConnection()? 'Ok':'Error'
+    //TODO use a better way for routing the web page
     app.all("*", (request, response) => {
         console.log(`Server : pathname-[${pathname}]`,true)
         routeur.router(request, response, pathname, nbreq++)
@@ -96,11 +93,11 @@ async function start(port, meta) {
 
     beautyLogs.bLogs
         (
-            `${infos.name.toUpperCase()}\n`+
-            `Server : Demarrage Server port ${port} url-[http://localhost:${port}]\n`+
-            `Version : ${infos.version}\n`+
-            `Database connection status : ${bddResponse}\n`+
-            'You can stop the server by taping Ctrl + c'
+            `${infos.name.toUpperCase()}
+            Server : Demarrage Server port ${port} url-[http://localhost:${port}]
+            Version : ${infos.version}
+            Database connection status : ${bddResponse}
+            You can stop the server by taping Ctrl + c`
         )
     //Create the http server
     http.createServer(app).listen(port);

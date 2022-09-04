@@ -5,6 +5,8 @@ const filesGestion = require("../module/Tools/files");
  const handleError = require('../module/Error/main.js');
 
 /**
+ * A manual way to find files and ressource ask by the user and the server.
+ * This way of 'routing' page dosen't use Express or NodeJS inbuild routing function.
  * 
  * @param {*} request Requetes serveur automatiquement envoyer pour traitement
  * @param {*} response Reponse serveur automatiquement envoyer pour traitement
@@ -89,6 +91,5 @@ const filesGestion = require("../module/Tools/files");
                 pathname,
                 errorMessage
             )
-
     }
 }
