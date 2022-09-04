@@ -53,11 +53,13 @@ async function Main (meta = undefined, option = undefined) {
 exports.Main = Main
 
 /**
- * @description Verify if it possible to connect to the database with meta.json file
+ * @description Verify if it possible to connect to the database with meta.json file informations
  * @returns Boolean
  */
-exports.verifyConnection = async function () {
+async function verifyConnection () {
     if (await Main(JSON.parse(fs.readFileSync('./ServExpress/meta.json')))) {
         return true
     }
 }
+
+exports.verifyConnection = verifyConnection
