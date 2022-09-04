@@ -5,24 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="stylesheet" href="Css\base.css">
     <title>
-        <%= PageTitle %>
+        <%= pageName %>
     </title>
 </head>
 <body>
     <nav>
-        <h1>Bienvenue sur la page <%= PageTitle %> </h1>
+        <h1>Bienvenue sur la page <%= pageName %> </h1>
     </nav>
 
     <div class='container'>
-        <h1>Commençons ?</h1>
-        <div class="content">
-            <%= Controller.data %>
-        </div>
-        <div class="content">
-            <form action="" method="get">
-                <input type="hidden" name="repond" value="Receive">
-                <input type="submit" value="envoyer">
-            </form>
+        <div class="conteneur">
+            <div class="content">
+                <div class="center">
+                    <div class="box">
+                        <h2>Zone de test pour form</h2>
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="center">
+                        <div class="div-form-presentation">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-title">
+                                        <h2>POST</h2>
+                                    </div>
+                                    <div class="card-center">
+                                        <p class="m-0 p-1">
+                                            <% if(typeof CR.weirdquestion != 'undefined') {%>
+                                                <%= CR.weirdquestion %>
+                                            <%};%>
+                                        </p>
+                                    </div>
+
+                                    <div class="card-end">
+                                        <form action="" method="POST">
+                                            <input type="hidden" name="openthedoor" value="Close the door ! I playing Minecraft !">
+                                            <input type="submit" value="Repondre">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-title">
+                                        <h2>GET</h2>
+                                    </div>
+                                    <div class="card-center">
+                                        <p class="m-0 p-1">Hey Father i saw a man flying in the sky today !</p>
+
+                                        <% if(typeof CR.weirdanswer != 'undefined') {%>
+                                            <hr>
+                                            <%=CR.weirdanswer %>
+                                        <%}%>
+                                    </div>
+                                    <div class="card-end">
+                                        <form action="" method="GET">
+                                            <input type="hidden" name="seetheson" value="That a good story son">
+                                            <input type="submit" value="Repondre">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

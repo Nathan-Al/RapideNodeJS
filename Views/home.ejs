@@ -10,7 +10,7 @@
         </title>
     </head>
 
-    <body>
+    <body id="body">
         <nav class="navigation-bar">
             <div class="nav-start center">
                 <a href="/"><h1>RAPIDENODE JS</h1></a>
@@ -47,21 +47,15 @@
                                 </th>
                                 <tr>
                                     <td>
-                                        <div class="td-div">
+                                        <div class="div-service center td-div">
                                             <h3>Server state : </h3>
-                                            <p><% if(typeof CR.serverState != 'undefined') {%>
-                                                    <%= CR.serverState %>
-                                                <%}%>
-                                            </p>
+                                            <p><% if(typeof CR.serverState != 'undefined') {%><%= CR.serverState %><%}%></p>
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="td-div">
+                                        <div class="div-service center td-div">
                                             <h3>Connected to the database : </h3>
-                                            <p><% if(typeof CR.databaseState != 'undefined') {%>
-                                                    <%= CR.databaseState %>
-                                                <%}%>
-                                            </p>
+                                            <p><% if(typeof CR.databaseState != 'undefined') {%> <%= CR.databaseState %><%}%></p>
                                         </div>
                                     </td>
                                 </tr>
@@ -71,7 +65,7 @@
                 </div>
                 <div class="conteneur">
                     <div class="content center-column">
-                        <h1>Page Test</h1>
+                        <h1>Chown the Error page</h1>
                         <a href="test">Aller</a>
                     </div>
                 </div>
@@ -79,4 +73,6 @@
 
         </div>
     </body>
+
+    <script src="Scripts/home.js"></script>
 </html>
