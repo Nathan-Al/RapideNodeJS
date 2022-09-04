@@ -9,8 +9,8 @@ server.route(
     //route1
     {
         method: "get",
-        path: "/",
-        callback(req,res,next){ res.sendFile('index') }
+        path: "/:path",
+        callback(req,res,next){ res.sendFile(req.params[path]) }
     },
     // //route2
     // {
@@ -30,10 +30,11 @@ server.route(
 
 // 'app.use'
 /* server.use('public') // accept callback or path */
+server.use('app')
 
 // 'app.set'
 /* server.set('key', value) */
-server.set('views', 'app');
+// server.set('views', 'view');
 
 //app.param (in dev)
 /* server.param('param', (req,res,next,val)=>{}) */
