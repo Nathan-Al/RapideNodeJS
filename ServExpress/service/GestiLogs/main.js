@@ -1,4 +1,4 @@
-const {LecteurFichiers} = require('../../module/Tools/files')
+const {LecteurFichiers} = require('../../../Tools/files')
 //---------------------------------
 const logsServerPath = (__dirname+'/ServExpress/Logs/server.txt')
 const logsDatabasePath = (__dirname+'/ServExpress/Logs/database.txt')

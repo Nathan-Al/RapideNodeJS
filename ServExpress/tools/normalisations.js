@@ -1,4 +1,4 @@
-var NameSpace_Normalisations = {
+const NameSpace_Normalisations = {
     'name': 'Normalisations . js',
     'Date de création ': '22/03/2020',
     'Utilisations': 'Nettoyage de chaine de caractère ou normalisation de données',

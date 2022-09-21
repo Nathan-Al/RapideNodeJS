@@ -1,6 +1,6 @@
 const fs = require('fs');
 const gestreq = require("./requestsManager");
-const filesGestion = require("../module/Tools/files");
+const filesGestion = require("../../Tools/files");
 // const beautyLogs = require('../module/BeautyLogs/main.js');
  const handleError = require('../module/Error/main.js');
 
