@@ -1,6 +1,6 @@
 const fs = require("fs")
 const nodProc = require('node:process');
-const {exec} = require('child_process')
+require('dotenv').config();
 //-------------------------------------
 const server = require('./server/main')
 
@@ -10,16 +10,10 @@ const server = require('./server/main')
  * @returns {Array} constant Array
  */
 function main (parameter) {
-    let metaJsonFile = JSON.parse(fs.readFileSync('./ServExpress/meta.json'))
-
     if(parameter[2]==='dev') {
-        metaJsonFile.server.port = 4445
-        metaJsonFile.server.devmode = true
+        process.env.PORT = 4445
         process.env.NODE_ENV = 'development'
     }
-
-    const meta = metaJsonFile
-    return meta
 }
 
 server.Main(main(nodProc.argv))

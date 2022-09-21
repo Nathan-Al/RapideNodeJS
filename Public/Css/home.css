@@ -124,11 +124,12 @@ h4
 
 .div-service {
     display: flex;
+    height: 12vh;
 }
 
 .div-service p {
     text-decoration: underline;
-    color: #1b5f81;
+    color: #cf195b;
     font-size: inherit;
     font-weight: 600;
 }

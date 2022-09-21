@@ -125,6 +125,9 @@ h4
 
 .server-msg .conteneur-f-w p {
     padding-left: 1%;
+    text-align: left;
+    text-justify: auto;
+    line-height: 1.3em;
 }
 
 .conteneur-f-w div {

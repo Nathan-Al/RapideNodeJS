@@ -20,9 +20,7 @@
                     Bienvenue sur la page <%= pageName %>
                 </h1>
             </div>
-            <div class="nav-end center">
-
-            </div>
+            <div class="nav-end center"></div>
         </nav>
 
         <div class="main">
@@ -49,13 +47,15 @@
                                     <td>
                                         <div class="div-service center td-div">
                                             <h3>Server state : </h3>
-                                            <p><% if(typeof CR.serverState != 'undefined') {%><%= CR.serverState %><%}%></p>
+                                            <p><% if(typeof CR.serverState != 'undefined') {%>
+                                                <%= CR.serverState %><%} else {%>Unknow<% } %> </p>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="div-service center td-div">
                                             <h3>Connected to the database : </h3>
-                                            <p><% if(typeof CR.databaseState != 'undefined') {%> <%= CR.databaseState %><%}%></p>
+                                            <p><% if(typeof CR.databaseState != 'undefined') {%> 
+                                                <%= CR.databaseState %><%} else {%>Unknow<%}%></p>
                                         </div>
                                     </td>
                                 </tr>

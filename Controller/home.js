@@ -1,4 +1,4 @@
-const database = require('../ServExpress/service/database/main')
+const database = require('../ServExpress/module/database/main')
 /**
  * @param {Object} datas The datas send by the user from the view
  * @param {Object} serverParameter Router parameter editable by the user (refere to doc for more detail)
@@ -9,6 +9,7 @@ const database = require('../ServExpress/service/database/main')
     if(typeof(datas.Get)!='undefined')
         exemple = "It's nice my son.";
     serverDatas.weirdanswer = exemple;
+    serverDatas.serverState = 'Not Send';
     serverDatas.databaseState = await database.verifyConnection()? 'Yes':'No'
 
     console.log(datas, serverParameter, serverDatas)

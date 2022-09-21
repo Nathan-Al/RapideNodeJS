@@ -6,9 +6,6 @@ const SqlDatabases = require('./database/main')
 const Server = require('../server/main');
 
 function Main () {
-    const meta = JSON.parse(fs.readFileSync('./meta.json'));
-
-
     console.log("[service] Lauch main container")
     Container(Server,{port:port})
     console.log("[service] Lauch server")
