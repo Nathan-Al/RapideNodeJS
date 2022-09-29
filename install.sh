@@ -24,7 +24,7 @@ if [[ -n $okForInstall ]]; then
             echo '*-- Install of Node JS --*'
             sudo apt install -y nodejs
             echo '*-- Install of python3 --*'
-            sudo apt install -y python-is-python3
+            sudo apt install -y python-is-python3 && pip install python-dotenv
             if [[ $okForDevVersion == 'y' ]] || [[ $okForDevVersion == 'yes' ]] || [[ $okForDevVersion == 'Yes' ]]; then
                 echo '*-- Install Docker && Docker compose --*'
                 #Delete docker old version
