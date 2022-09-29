@@ -1,4 +1,5 @@
 import json
+import os
 
 def copy (source,destination):
     file_src = open(source, 'r')
@@ -8,8 +9,11 @@ def copy (source,destination):
         return True
     else:
         return False
-def creer ():
-    print("Creer")
+def creer (file):
+    try:
+        open(file, "x")
+    except:
+        return False
 def edit (source,content):
     result = False
     file = open(source, "a")
@@ -19,21 +23,44 @@ def edit (source,content):
     return result
 # Function to get datas in a file
 def read(source):
-    file = open(source, "r")
+    file = open(source, "r+")
     return file.read()
+def delete(source):
+    try:
+        if os.path.exists(source):
+            os.remove(source)
+            return True
+        else:
+            return False
+    except:
+        print('Delete file error')
+        return False
 # Function for editing JSON File
-def editJSON (source, content):
-    result = False
-    data_source = json.loads(read(source))
-    data_source['route'].append(content)
-    data_source = json.dumps(data_source, indent=2)
-    file_destination = open(source, "w")
+def editJSONUrls (source, content):
+    try:
+        result = False
+        data_source = getJSON(source)
+        data_source['route']['user'].append(content)
+        data_source = json.dumps(data_source, indent=2)
+        file_destination = open(source, "w")
 
-    if file_destination.write(data_source):
-        result = True
-    file_destination.close()
-    return result
+        if file_destination.write(data_source):
+            result = True
+        file_destination.close()
+        return result
+    except:
+        return False
+def editJSON (destination, content):
+    try:
+        result = False
+        data_destination = json.dumps(content, indent=2)
+        file_destination = open(destination, "w")
+
+        if file_destination.write(data_destination):
+            result = True
+        file_destination.close()
+        return result
+    except:
+        return False
 def getJSON (source):
-    result = ''
-    data_source = json.loads(read(source))
-    return data_source
+    return json.loads(read(source))
