@@ -1,8 +1,7 @@
 {
- "route": {
-    "user": [
-      {
-        "name": "home",
+  "route": {
+    "user": {
+      "home": {
         "liens": [
           "",
           "/",
@@ -12,30 +11,20 @@
         "views": "home.ejs",
         "controller": "home.js"
       },
-      {
-        "name": "test",
+      "test": {
         "liens": [
           "test"
         ],
-        "views": "test.js",
-        "controller": "test.js"
-      },
-      {
-        "name": "manathan",
-        "liens": [
-        "manathan"
-        ],
-        "views": "manathan.html",
+        "views": "test.ejs",
         "controller": "test.js"
       }
-    ],
-    "internal": [
-      {
-        "name": "error",
+    },
+    "internal": {
+      "error": {
         "liens": [],
         "views": "error.ejs",
         "controller": ""
       }
-    ]
+    }
   }
 }
