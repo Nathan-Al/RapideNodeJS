@@ -2,7 +2,7 @@
   "route": {
     "user": {
       "home": {
-        "liens": [
+        "link": [
           "",
           "/",
           "accueil",
@@ -11,17 +11,17 @@
         "views": "home.ejs",
         "controller": "home.js"
       },
-      "test": {
-        "liens": [
-          "test"
+      "formTest": {
+        "link": [
+          "formTest"
         ],
-        "views": "test.ejs",
-        "controller": "test.js"
+        "views": "formTest.ejs",
+        "controller": "formTest.js"
       }
     },
     "internal": {
       "error": {
-        "liens": [],
+        "link": [],
         "views": "error.ejs",
         "controller": ""
       }
