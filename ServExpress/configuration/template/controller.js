@@ -1,43 +1,15 @@
+const urls = require ('../Module/pagesUrls/main')
 /**
- * @description Controller generate by command line
- * @param {*} data send in POST or GET
-*/
+ * @typedef {Object} serverObject
+ * @property {boolean|string} parameter - All the parameter concerning the redirection and choose of the view (refer to the doc for more informations)
+ * @property {any} datas - The informations that need to be send to the view. (If you need more informations efer to the doc)
+ * 
+ * @param {Object} serverDatas The datas send by the user from the view
+ * @param {serverObject} serverObject A object create by the server for ease of use of the server parameter and datas that need to be send
+ */
+module.exports.Controller = async function Controller(serverDatas, serverObject) {
+    serverObject.datas.urls = await urls.getUrls(serverDatas.PageName, 'user')
 
-exports.Controller = async function Controller(data) {
-
-    /**
-     * @description Principal return Object
-     */
-    let fonctionController = [];
-
-    if (data.data_get == null && data.data_post == null) {
-
-
-        return fonctionController;
-
-    } else if (data != undefined && data != 'no_data') {
-
-        fonctionController.use_redirect = false;
-
-        fonctionController.url_Redirect = '/';
-
-        fonctionController.persistence = false;
-
-    if (data) {
-        let info_get;
-        let info_post;
-
-        if (data.data_post != null) {
-
-        } else if (data.data_get != null) {
-
-        }
-    } else {
-        return new Error('Controller error : Aucune informations envoyer');
-    }
-
-    return fonctionController;
-    } else {
-        return new Error('Controller error : Aucune informations n\'a été envoyer');
-    }
+    console.log(serverDatas, serverObject)
+    return serverObject;
 };
