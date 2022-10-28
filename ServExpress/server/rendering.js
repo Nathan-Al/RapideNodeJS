@@ -1,6 +1,3 @@
-const handleError = require('../module/Error/main.js');
-const beautyLogs = require('../module/BeautyLogs/main');
-
 /**
  * The rendering part have been separate from the requestmanager
  * for future function and security test

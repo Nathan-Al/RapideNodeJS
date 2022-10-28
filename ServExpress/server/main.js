@@ -78,19 +78,26 @@ async function start(port) {
 
     const bddResponse = await database.verifyConnection()? 'Ok':'Error'
     //TODO use a better way for routing the web page
+    app.post('/ajax-request', function(request, response) {
+        console.log(`Server : pathname-[${pathname}]`,true)
+        routeur.router(request, response, pathname, nbreq++)
+        //response.end('It worked!');
+    })
+    app.get('/ajax-request', function(request, response) {
+        response.end('It worked!');
+    })
     app.all("*", (request, response) => {
         console.log(`Server : pathname-[${pathname}]`,true)
         routeur.router(request, response, pathname, nbreq++)
     });
 
-    beautyLogs.bLogs
-        (
-            `${infos.name.toUpperCase()}
-            Server : Demarrage Server port ${port} url-[http://localhost:${port}]
-            Version : ${infos.version}
-            Database connection status : ${bddResponse}
-            You can stop the server by taping Ctrl + c`
-        )
+    beautyLogs.bLogs (
+        `${infos.name.toUpperCase()}
+        Server : Demarrage Server port ${port} url-[http://localhost:${port}]
+        Version : ${infos.version}
+        Database connection status : ${bddResponse}
+        You can stop the server by taping Ctrl + c`
+    )
     //Create the http server
     http.createServer(app).listen(port);
 }

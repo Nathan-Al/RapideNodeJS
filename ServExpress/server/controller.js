@@ -7,6 +7,7 @@ const { Controller } = require("../class/Controller");
  * @param {Object} RequestesObject.data All the informations send in GET and POST {Get,Post}
  * @param {String} RequestesObject.data.Get The datas send in GET
  * @param {String} RequestesObject.data.POST The datas send in POST
+ * @param {String} RequestesObject.data.PageName The site page name
  * 
  * @param {String} RequestesObject.controllerName The controller name
  * @param {String} database_info.user The user name used for the database connection
@@ -34,7 +35,7 @@ exports.Controller = async function (RequestesObject) {
     };
 
     let controllerRequest = require(controllerDir + RequestesObject.controllerName);
-    controller = await controllerRequest.Controller(RequestesObject.data, controller.parameter, controller.datas);
+    controller = await controllerRequest.Controller(RequestesObject.data, controller);
 
     return controller;
 }

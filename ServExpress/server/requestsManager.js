@@ -1,5 +1,5 @@
 //TODO use the logs middle
-//const beautyLogs = require('../module/BeautyLogs/main.js');
+const beautyLogs = require('../module/BeautyLogs/main.js');
 const errorHandler = require('../module/Error/main.js')
 const rendering = require('./rendering');
 
@@ -16,9 +16,9 @@ const rendering = require('./rendering');
  */
 
  exports.requestManager = async function(request, response, vue = null, controller = null, pageName = null, pathname = null, errorMessage = null) {
-    console.log(`Request Manager : controller-[${controller}], views-[${vue}], pathname-[${pathname}], errorMessage-[${errorMessage}]`)
+    console.log(`Request Manager : controller-[${controller}], views-[${vue}], page name-[${pageName}], pathname-[${pathname}], errorMessage-[${errorMessage}]`)
     let viewsDir = '../Views/'
-    let datas = {Get:undefined, Post:undefined}
+    let datas = {Get:undefined, Post:undefined, PageName:pageName}
 
     if (controller != undefined && vue != undefined && typeof pathname === 'string' && errorMessage === 'none') {
 
@@ -26,7 +26,6 @@ const rendering = require('./rendering');
         if (pathname != "/" && pathname.indexOf("?") != -1) {
             datas.Get = pathname.slice(pathname.indexOf("?") + 1, pathname.length).replace(/\+/g, " ");
         }
-
         if (request._body) {
             datas.Post = request.body
         }
@@ -51,27 +50,30 @@ const rendering = require('./rendering');
         // After taken the Controller Datas create by the user
         // everything need to be send to the views.
         // If the user asked for a redirections or not the choice mater here.
-        if (controllerDatas.use_redirect && controllerDatas.url_Redirect != undefined) {
+        if (controllerDatas.parameter.useRedirect && controllerDatas.parameter.urlRedirect != undefined) {
             console.log(`Request Manager -REDIRECT- :${typeof(controllerDatas)}`);
 
-            let targetUrl = (typeof(controllerDatas.url_Redirect) != 'undefined' ? controllerDatas.url_Redirect : '/');
+            let targetUrl = (typeof(controllerDatas.parameter.urlRedirect) != 'undefined' ? controllerDatas.parameter.urlRedirect : '/');
 
-            if (!controllerDatas.persistence) {
+            if (!controllerDatas.parameter.persistence) {
                 controllerDatas = undefined;
             }
 
             request.body = controller;
             response.redirect(targetUrl);
             response.end();
-        }// else if (controllerDatas.use_redirect && controllerDatas.url_Redirect == undefined || controllerDatas.use_redirect == false) {
-        //     console.log('Request Manager : Render Data')
-        //     console.log('Request Manager : Render page-', pageName)
-        //     rendering.rendering(response)
-        //     response.render(viewsDir + vue, controllerDatas, {CR : controllerDatas, pageName})
-        //     response.end();
-        // } 
-        else {
-            rendering.rendering(response, viewsDir + vue, {CR : controllerDatas, pageName})
+        } else if (pathname == '/ajax-request') {
+            response.end(JSON.stringify(controllerDatas.datas))
+            beautyLogs.bLine()
+        } else if (controllerDatas.use_redirect && controllerDatas.url_Redirect == undefined || controllerDatas.use_redirect == false) {
+            console.log('Request Manager : Render Data')
+            console.log('Request Manager : Render page-', pageName)
+            rendering.rendering(response)
+            response.render(viewsDir + vue, controllerDatas, {CR : controllerDatas, pageName})
+            response.end();
+        } else {
+            rendering.rendering(response, viewsDir + vue, {CR : controllerDatas.datas, pageName})
+            beautyLogs.bLine()
         }
 
     } else {
