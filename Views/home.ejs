@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link type="text/css" rel="stylesheet" href='Css\base.css'>
-        <link type="text/css" rel="stylesheet" href='Css\home.css'>
+        <link type="text/css" rel="stylesheet" href='Css/Interne/base.css'>
+        <link type="text/css" rel="stylesheet" href='Css/Interne/home.css'>
         <title>
             <%= pageName %>
         </title>
@@ -17,7 +17,7 @@
             </div>
             <div class="nav-center center">
                 <h1 class="center">
-                    Bienvenue sur la page <%= pageName %>
+                    Welcome to the page <%= pageName %>
                 </h1>
             </div>
             <div class="nav-end center"></div>
@@ -27,10 +27,10 @@
             <div class="conteneur div-info">
                 <div class="content center-column">
                     <h1>
-                        Ceci est la page d'accueil par défaut
+                        That page is the default page
                     </h1>
                     <p>
-                        Cette page est disponible sous les urls [ <strong>/</strong>, <strong>home</strong>, <strong>accueil</strong> ]
+                        That page is available on the urls [ <strong>/</strong>, <strong>home</strong>, <strong>accueil</strong> ]
                     </p>
                 </div>
             </div>
@@ -40,22 +40,39 @@
                     <div class="content">
                         <div class="conteneur">
                             <table>
-                                <th>
-                                    <h1 class="center">Service</h1>
-                                </th>
+                                <h1 class="center">Service</h1>
                                 <tr>
                                     <td>
                                         <div class="div-service center td-div">
-                                            <h3>Server state : </h3>
+                                            <h3>Server state :</h3>
                                             <p><% if(typeof CR.serverState != 'undefined') {%>
                                                 <%= CR.serverState %><%} else {%>Unknow<% } %> </p>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="div-service center td-div">
-                                            <h3>Connected to the database : </h3>
+                                            <h3>Database connection :</h3>
                                             <p><% if(typeof CR.databaseState != 'undefined') {%> 
                                                 <%= CR.databaseState %><%} else {%>Unknow<%}%></p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table>
+                                <h1 class="center">Global infos</h1>
+                                <tr>
+                                    <td>
+                                        <div class="div-service center td-div">
+                                            <h3>Port :</h3>
+                                            <p><% if(typeof CR.port != 'undefined') {%> 
+                                                <%= CR.port %><%} else {%>Unknow<%}%></p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="div-service center td-div">
+                                            <h3>Dev mod :</h3>
+                                            <p><% if(typeof CR.devmod != 'undefined') {%> 
+                                                <%= CR.devmod %><%} else {%>Unknow<%}%></p>
                                         </div>
                                     </td>
                                 </tr>
@@ -63,15 +80,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="conteneur">
-                    <div class="content center-column">
-                        <h1>Chown the Error page</h1>
-                        <a href="test">Aller</a>
+                <div class="conteneur center-column">
+                    <h1>Want to make some test ?</h1>
+                    <div class="content conteneur-fl div-test-page">
+                        <a href="unknow">Show the Error page</a>
+                        <a href="formTest">POST & GET test</a>
                     </div>
                 </div>
             </div>
-
         </div>
+        <footer class="content center-column">
+            <div class="center">
+                <div class="footer-start">
+                    <a href="http://" class="center">Go to the documentation page !</a>
+                </div>
+                <div class="footer-center">
+                    <a href="http://" class="center">Github</a>
+                </div>
+                <div class="footer-end">
+                    <a href="http://" class="center">Learn more</a>
+                </div>
+            </div>
+        </footer>
     </body>
 
     <script src="Scripts/home.js"></script>

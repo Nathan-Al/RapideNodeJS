@@ -1,17 +1,18 @@
-const database = require('../ServExpress/module/database/main')
+const database = require('../Module/database/main')
 /**
- * @param {Object} datas The datas send by the user from the view
- * @param {Object} serverParameter Router parameter editable by the user (refere to doc for more detail)
- * @param {Object} serverDatas The server default object to send datas to the view Ex : {name: 'Jhon Does'}
+ * @typedef {Object} serverObject
+ * @property {boolean|string} parameter - All the parameter concerning the redirection and choose of the view (refer to the doc for more informations)
+ * @property {any} datas - The informations that need to be send to the view. (If you need more informations efer to the doc)
+ * 
+ * @param {Object} serverDatas The datas send by the user from the view
+ * @param {serverObject} serverObject A object create by the server for ease of use of the server parameter and datas that need to be send
  */
- module.exports.Controller = async function Controller(datas, serverParameter, serverDatas) {
-    let exemple = 'No Exemple';
-    if(typeof(datas.Get)!='undefined')
-        exemple = "It's nice my son.";
-    serverDatas.weirdanswer = exemple;
-    serverDatas.serverState = 'Not Send';
-    serverDatas.databaseState = await database.verifyConnection()? 'Yes':'No'
+module.exports.Controller = async function Controller(serverDatas, serverObject) {
+    serverObject.datas.port = process.env.PORT
+    serverObject.datas.devmod = process.env.DEV
+    serverObject.datas.serverState = 'Not Send';
+    serverObject.datas.databaseState = await database.verifyConnection()? 'Yes':'No'
 
-    console.log(datas, serverParameter, serverDatas)
-    return serverDatas;
+    console.log(serverDatas, serverObject)
+    return serverObject;
 };
