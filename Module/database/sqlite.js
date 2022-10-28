@@ -40,11 +40,12 @@ exports.sqliteCo = main;
  * @returns SqliteObject | Error
  */
  function getAsyncSqliteDatabase() {
+    let response = {}
     if(process.env.DATABASE_NAME === '' || process.env.DATABASE_NAME === undefined || typeof process.env.DATABASE_NAME != 'string') {
         response.connection = undefined;
         response.result = false;
     } else {
-        let dbPath = SQLITE_PATH+process.env.DATABASE_NAME+'.db';
+        let dbPath = databasePath+process.env.DATABASE_NAME+'.db';
         response.connection = sqlite.connect(dbPath);
         response.result = true;
     }

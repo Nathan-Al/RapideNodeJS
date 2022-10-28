@@ -1,4 +1,3 @@
-const fs = require("fs")
 const mysql = require('./mysql')
 const sqlite = require('./sqlite')
 // ---------------------------
@@ -56,22 +55,24 @@ async function verifyConnection () {
         //TODO handle the error response with the error
         case 'sqlite':
             response = await main()
-            response.close((err) => {
+            response.connection.close((err) => {
                 if (err) {
                     console.error(err.message)
                     return false
+                } else {
+                    return true
                 }
             })
             break
         case 'mysql':
             try {
-                await mysql.verifyMysqlConnection()
+                return await mysql.verifyMysqlConnection()
             } catch (error) {
                 return false
             }
-            break
+        default:
+            return false
     }
-    return true
 }
 
 exports.verifyConnection = verifyConnection

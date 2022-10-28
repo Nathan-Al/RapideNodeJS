@@ -1,8 +1,5 @@
 class Connexion {
-   /**
-    * @public {boolean} result If the connection is successful
-    */
-    result = undefined
+
     /**
      * @public {mysql.Connection} connection - Mysql connection Object
      */
@@ -16,8 +13,7 @@ class Connexion {
      */
     stat = undefined
 
-    constructor(result, connection, type, stat) {
-        this.result = result
+    constructor(connection, type, stat) {
         this.connection = connection
         this.type = type
         this.stat = stat
