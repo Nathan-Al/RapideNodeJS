@@ -5,7 +5,7 @@
     "body-parser": "^1.19.0",
     "child_process": "^1.0.2",
     "docker": "^0.2.14",
-    "dotenv": "^16.0.2",
+    "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.17.2",
     "favicon": "0.0.2",
@@ -20,9 +20,7 @@
   "description": "NodeJS avec ExpressJS et quelque petite dependance pour se faciliter la vie",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ServExpress/index.js dev",
-    "start": "node ServExpress/index.js",
-    "teta_old": "node ServExpress/teta.js",
+    "start": "./ServExpress/start.sh",
     "teta": "python ServExpress/Teta/teta.py"
   },
   "repository": {
