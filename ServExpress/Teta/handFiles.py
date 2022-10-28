@@ -37,19 +37,21 @@ def delete(source):
         return False
 # Function for editing JSON File
 def editJSONUrls (source, content):
-    try:
-        result = False
-        data_source = getJSON(source)
-        data_source['route']['user'].append(content)
-        data_source = json.dumps(data_source, indent=2)
-        file_destination = open(source, "w")
+    # try:
+    result = False
+    data_source = getJSON(source)
+    #Get the array name
+    keys = list(content)
+    data_source['route']['user'][keys[0]] = content[keys[0]]
+    data_source = json.dumps(data_source, indent=2)
+    file_destination = open(source, "w")
 
-        if file_destination.write(data_source):
-            result = True
-        file_destination.close()
-        return result
-    except:
-        return False
+    if file_destination.write(data_source):
+        result = True
+    file_destination.close()
+    return result
+    # except:
+    #     return False
 def editJSON (destination, content):
     try:
         result = False
