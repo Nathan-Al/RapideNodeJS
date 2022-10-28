@@ -8,12 +8,6 @@ const Info = require("../module/ServerInfo/class/ServerInfo")
 class Controller {
 
   /**
-   * @param Any
-   * @type {Array<Any>}
-   */
-  fonction
-
-  /**
    * @typedef {Object} Parameter
    * @property {Boolean} useRedirect : Use or not a redirection
    * @property {String} urlRedirect : The url where the redirection need to be
@@ -28,24 +22,12 @@ class Controller {
   datas
 
   /**
-   * @param {Array} fonction A Array with all the variable send by the user for the view to process it
    * @param {{}} parameter Router parameter editable by the user
-   * @param {{}} datas The user controller datas {name: datas}
+   * @param {{}} datas All the variable send by the user for the view to process it datas {name: datas}
    */
-    constructor(fonction = [], parameter = {}, datas = {}) {
-      this.fonction = fonction
+    constructor(parameter = {}, datas = {}) {
       this.parameter = parameter
       this.datas = datas
-    }
-
-    get fonction ()
-    {
-      return this.fonction
-    }
-
-    set fonction (fonction)
-    {
-      return this.fonction = fonction
     }
 
     get parameter ()

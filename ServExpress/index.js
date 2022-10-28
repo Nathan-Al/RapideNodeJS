@@ -13,6 +13,8 @@ function main (parameter) {
     if(parameter[2]==='dev') {
         process.env.PORT = 4445
         process.env.NODE_ENV = 'development'
+    } else {
+        process.env.NODE_ENV = 'production'
     }
 }
 
