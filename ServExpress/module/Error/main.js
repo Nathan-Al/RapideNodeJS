@@ -12,6 +12,8 @@ const beautyLogs = require('../BeautyLogs/main');
  */
  exports.main = (response, error, message, code) => {
 
+    message = message.replaceAll('   ', '\n')
+
     let errorDatas = {njsEror: error, njsMsg: message, njsCode: code, pagename:'Error'}
     response.status(code)
 
@@ -21,4 +23,5 @@ const beautyLogs = require('../BeautyLogs/main');
             MESSAGE : ${message}`)
 
     rendering.rendering(response, 'internal/error/error.ejs', errorDatas, true)
+    beautyLogs.bLine()
 }
