@@ -46,6 +46,7 @@ Une fois installer vous trouverez un fichier `.env` a la racine du projet. Dans 
 * Changer le port par default utiliser par le serveur
 * Choisir le dossier de fichier statique
 
+```
 --------------
 ## Comment le lancer ?
 Si vous avez Node JS installer sur votre système il vous suffit de lancer cette commande
