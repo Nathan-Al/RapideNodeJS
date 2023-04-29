@@ -1,4 +1,4 @@
-const database = require('../Module/database/main')
+const urls = require ('../Module/pagesUrls/main')
 /**
  * @typedef {Object} serverObject
  * @property {boolean|string} parameter - All the parameter concerning the redirection and choose of the view (refer to the doc for more informations)
@@ -8,10 +8,7 @@ const database = require('../Module/database/main')
  * @param {serverObject} serverObject A object create by the server for ease of use of the server parameter and datas that need to be send
  */
 module.exports.Controller = async function Controller(serverDatas, serverObject) {
-    serverObject.datas.port = process.env.PORT
-    serverObject.datas.devmod = process.env.DEV
-    serverObject.datas.serverState = 'Not Send';
-    serverObject.datas.databaseState = await database.verifyConnection()? 'Yes':'No'
+    serverObject.datas.urls = await urls.getUrls(serverDatas.PageName, 'user')
 
     console.log(serverDatas, serverObject)
     return serverObject;

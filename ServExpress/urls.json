@@ -1,0 +1,30 @@
+{
+  "route": {
+    "user": {
+      "home": {
+        "link": [
+          "",
+          "/",
+          "accueil",
+          "home"
+        ],
+        "views": "home.ejs",
+        "controller": "home.js"
+      },
+      "formTest": {
+        "link": [
+          "formTest"
+        ],
+        "views": "formTest.ejs",
+        "controller": "formTest.js"
+      }
+    },
+    "internal": {
+      "error": {
+        "link": [],
+        "views": "error.ejs",
+        "controller": ""
+      }
+    }
+  }
+}
