@@ -46,8 +46,6 @@ Une fois installer vous trouverez un fichier `.env` a la racine du projet. Dans 
 * Changer le port par default utiliser par le serveur
 * Choisir le dossier de fichier statique
 
-```
---------------
 ## Comment le lancer ?
 Si vous avez Node JS installer sur votre système il vous suffit de lancer cette commande
 #### CMD
@@ -113,6 +111,6 @@ If you have Node JS installed on your system just run this command
 ```
 npm run start
 ```
-Once done open your browser and go to the address `localhost: 4444`
+Once done open your browser and go to the address `http://localhost:4444` or `http://localhost:4445`
 
 --------------
