@@ -1,0 +1,256 @@
+html {
+    overflow: none;
+}
+
+body {
+    background-color: rgb(27, 27, 27);
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: none;
+}
+
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: rgb(0 0 255 / 0%);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #0df589;
+}
+
+hr {
+    border: 1px solid #333;
+    color: #333;
+    overflow: visible;
+    text-align: center;
+}
+
+footer {
+    height: auto;
+}
+
+.center
+{
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+}
+
+.menu-list a {
+    color: rgb(226, 226, 226);
+}
+
+.menu .menu-label {
+    color: white
+}
+
+.anchor {
+    display: block;
+    visibility: hidden;
+    height: 100px;
+    margin-top: -100px;
+}
+
+.text-is-orange {
+    color: orange
+}
+
+.content blockquote {
+    color:white;
+    background-color: rgb(46, 46, 46);
+    border-left: 5px solid #585858;
+}
+
+/*                                   */
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    height: 100%;
+    overflow: hidden;
+}
+
+.main section {
+    overflow: auto;
+}
+
+.container-1
+{
+    min-height: 50%;
+    margin-top: 1%;
+    background-color: rgb(27, 27, 27);
+}
+
+.container-2
+{
+    height: auto;
+    background-color: rgb(226, 226, 226);
+}
+
+.menu-navigation-label {
+    overflow: auto;
+}
+
+#divNavigation div .menu {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    border-left: 1px solid white;
+    margin-top: 3%;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    height: 94vh;
+    margin-top: 10vh;
+}
+.menu-option::-webkit-scrollbar {
+    width: 12px;
+}
+
+.menu-option::-webkit-scrollbar-track {
+    background-color: rgb(0 0 255 / 0%);
+}
+
+.menu-option::-webkit-scrollbar-thumb {
+    background-color: #2b409c;
+}
+
+.div-button-navigation {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    z-index: 0;
+}
+
+#label-for-button:checked + label > #menu-navigation {
+    color: white;
+    left: 0%;
+}
+
+#label-for-button {
+    display: none;
+}
+
+.button-navigation {
+    height: 10%;
+    width: 10%;
+    background-color: #485fc7;
+    margin-left: 100%;
+    border-radius: 0 30% 30% 0%;
+    border-right: 2px solid #637ef5;
+}
+
+label #menu-navigation .div-navigation {
+    overflow: auto;
+}
+
+.directory-tree {
+    display: block;
+    list-style: none;
+}
+
+.directory-tree h6 {
+    margin-bottom: 0px;
+}
+
+.directory-tree h5 {
+    margin-bottom: 0px;
+}
+
+.directory-tree dd {
+    margin-left: 1em;
+}
+
+.directory-tree li{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.directory-tree li::before {
+    display: block;
+    border-top: 2px solid #000000a6;
+    content: '';
+    width: 10px;
+    height: 0;
+}
+
+.div-line {
+    border-left: 2px solid #000000a6;
+    margin-left: 10px;
+}
+
+.div-center-line {
+    border-bottom: 2px solid #000000a6;
+    width: 1%;
+    height: 0px;
+    padding-top: 2%;
+}
+
+.arborescence {
+    position: relative;
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+.arborescence .box { 
+    width: 100%;
+    max-height: 35vh;
+    overflow: hidden;
+}
+
+/*                                   */
+
+.text-is-blue {
+    color: #1a58d3;
+}
+
+.text-is-lightblue {
+    color: #3cc9ff;
+}
+
+.text-is-variable {
+    color: #029fdd;
+}
+
+.text-is-green {
+    color: #35a335;
+}
+
+/*                                   */
+
+.is-button-normal {
+    background-color: #3a7e32;
+    color: white
+}
+
+@media screen and (max-width: 1024px) {
+    .main {
+        grid-template-columns: 1fr;
+        position: relative;
+    }
+    #menu-navigation {
+        display: flex;
+        position: absolute;
+        z-index: 5;
+        left: -17em;
+        height: 100%;
+        transition-duration: 0.5s;
+    }
+    .menu .div-navigation{
+        background-color: black;
+        border-right: 3px solid #485fc7;
+        margin: 0!important;
+        z-index: 1;
+        overflow: auto;
+    }
+}
