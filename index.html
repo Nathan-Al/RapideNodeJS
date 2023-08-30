@@ -1,18 +1,111 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil</title>
-</head>
-<body>
-   <div id="main">
-    <!-- Javascript generate -->
-    </div>
-</body>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="./public/favicon.ico">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link rel="stylesheet" href="./public/css/index.css">
+        <title>Accueil</title>
+    </head>
+    <body>
+        <nav class="navbar is-link" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item is-size-2 is-size-3-mobile" href="./">
+                    RAPIDE NODE JS
+                </a>
+                <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div class="navbar-menu" id="navMenu">
+                <div class="navbar-start">
+                    <a href="./views/documentation/fr/index.html" class="navbar-item is-size-5 is-size-6-mobile">Documentation</a>
+                    <a href="./views/tutoriel/fr/index.html" class="navbar-item is-size-5 is-size-6-mobile">Tutoriel</a>
+                </div>
+                <div class="navbar-end">
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            Language
+                        </a>
+
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item">
+                            French
+                            </a>
+                            <a class="navbar-item">
+                            English
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container-1 center">
+            <div class="container-2">
+                <section class="section">
+                    <div class="columns">
+                        <div class="selection column has-text-black box has-background-white-ter">
+                            <h1 class="title is-size-1 is-size-2-mobile mb-2">
+                                Rapide Node JS :
+                                <p class="is-size-3">
+                                    Serveur local basique utilisant la technologie
+                                    <a href="https://nodejs.org/en/">Node JS</a> &
+                                    <a href="https://expressjs.com">le Framework Express JS</a>
+                                </p>
+                            </h1>
+                            <div class="content is-size-5">
+                                <p class="has-text-weight-normal is-underlined mb-0">Version actuelle stable</p>
+                                <p>Version actuelle 1.0.0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="container is-size-5">
+                        <div class="content has-text-black">
+                            <h2>A propos du projet</h2>
+                            <p>
+                                RapideNodeJS fonctionne comme une surcouche de Express JS.
+                                Le but du projet est de permettre au développeur débutant ou confirmé d'avoir un serveur Node JS basique facile à modifier et utiliser.
+                                Pour cela l'entièreté du projet est disponible sur Github avec la documentation.
+                                Les premières versions du projet seront créées seulement à but d'apprentissage et de test de la technologie.
+                            </p>
+                        </div>
+                        <hr>
+                        <div class="content has-text-black">
+                            <h2>Que dois-je faire ?</h2>
+                            <p>
+                                Si vous n'avez jamais utiliser NodeJS mais que vous connaissez JavaScript vous n'aurez pas trop de mal à vous y retrouvez.
+                                <br>
+                                <p>Explication rapide</p>
+                                Le projet utilise l’architecture MVC. Vous avez ainsi le contrôleur qui 
+                                envoie un ' Object ' à la vue que vous pouvez par la suite utiliser pour afficher ou traiter des informations.<br>
+                                Si vous avez plus de questions (comme par exemple comment l'installer) réfèrerez-vous à la documentation.
+                            </p>
+                            <h2>Qu’est-il possible de faire avec RapideNodeJS ?</h2>
+                            <ul>
+                                <li>Créer un site en utilisant le model MVC.</li>
+                                <li>Créer rapidement une ou plusieurs pages pour son site.</li>
+                                <li>Choisir l'url que l'on veut pour sa page ou même en mettre plusieurs.</li>
+                            </ul>
+                            <p>
+                                ! Il n'est pas recommandé de l'utiliser comme serveur de production mais seulement de test !
+                            </p>
+                        </div>
+                    </div>
+                  </section>
+            </div>
+            </div>
+            <footer class="m-4 p-4">
+                <div class="content has-text-centered">
+                    <p>
+                      <strong>Copyright</strong> This site was create for the project <strong>RAPIDENODEJS</strong> it used as documentation page
+                    </p>
+                  </div>
+            </footer>
+    </body>
+    <script src="./scripts/bulma.js"></script>
 </html>
-<script src="./ServExpress/index.js"></script>
-<script>
-    let main = document.getElementById('main')
-</script>
