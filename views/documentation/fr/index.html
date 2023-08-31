@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
+        Content-Security-Policy: script-src-elem ../../../scripts/bulma.js
+        Content-Security-Policy: script-src-elem ../../../scripts/main.js
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,7 +100,7 @@
                                 <li>
                                     <a href="#title-dpc" id="chp-pack">Dépendance</a>
                                     <ul>
-                                        <li><a href="#title-" id="chp-npm">Npm Package</a></li>
+                                        <li><a href="#title-npm-package" id="chp-npm">Npm Package</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -708,6 +710,6 @@
             </section>
         </div>
     </body>
-    <script src="../../../scripts/bulma.js"></script>
-    <script type="module" src="../../../scripts/main.js"></script>
+    <script script-src-elem="../../../scripts/bulma.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" script-src-elem="../../../scripts/main.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </html>
