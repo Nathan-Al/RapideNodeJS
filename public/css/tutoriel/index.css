@@ -1,0 +1,29 @@
+body {
+    background-color: rgb(27, 27, 27);
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
+}
+
+.container-1
+{
+    min-height: 50%;
+    background-color: rgb(27, 27, 27);
+}
+
+.container-2
+{
+    height: auto;
+    background-color: rgb(226, 226, 226);
+}
+
+.code-preview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.code-preview blockquote {
+    height: 100%;
+}
