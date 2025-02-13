@@ -10,6 +10,9 @@ RapideNodeJS est juste un serveur basique utilisant Node JS.
 Il est avantageux pour quiconque voudrait créer rapidement une page ou bien voudrait un support de départ pour son propre serveur NodeJS.
 Il n'est pas recommandé de l'utiliser comme serveur de Prod mais seulement de Dev.
 
+# Liens de la documentation
+https://nathan-al.github.io/RapideNodeJS/
+
 ## Package utiliser
 * body-parser
 * express
@@ -132,6 +135,9 @@ Current version 0.0.1
 RapideNodeJS is just a basic server using Node JS.
 It is advantageous for those who would like to quickly create a page or would like a starting support for their own NodeJS server.
 It is not recommended to use it as a Prod server, only a Dev server.
+
+# Link for the documentation
+https://nathan-al.github.io/RapideNodeJS/
 
 ## Package use
 * body analyzer

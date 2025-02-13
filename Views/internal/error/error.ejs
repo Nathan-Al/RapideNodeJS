@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="Css\Interne\error.css">
+    <link type="text/css" rel="stylesheet" href='Css\Interne\base.css'>
+    <title>
+        Pages d'erreur : <%= pagename %>
+    </title>
+</head>
+
+<body>
+    <nav class="navigation-bar">
+        <div class="nav-start center">
+            <a href="/"><h1>RAPIDENODE JS</h1></a>
+        </div>
+        <div class="nav-center center">
+
+        </div>
+        <div class="nav-end center">
+
+        </div>
+    </nav>
+    <div class="main">
+        <div class="conteneur div-info">
+            <div class="div-error-title w-full center">
+                <h1>ERROR</h1>
+                <h2><%= njsEror %></h2>
+            </div>
+        </div>
+        <div class="msg-conteneur">
+            <div class="div-server-msg">
+                <div class="title-server-msg">
+                    <h2>Server Message <%= njsCode %></h2>
+                </div>
+                <div class="conteneur-f-w server-msg">
+                    <div class="div-black-1"></div>
+                    <div class="conteneur-f-w">
+                        <div>
+                            <p>- <%= njsMsg %></p>
+                        </div>
+                    </div>
+                    <div class="div-black-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

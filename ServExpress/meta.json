@@ -1,0 +1,22 @@
+{
+    "server":{
+        "port": "4444",
+        "devmode": false
+    },
+    "database":{
+        "type": "sqlite",
+        "sqlite" : {
+            "name": "default"
+        },
+        "mysql": {
+            "host": "",
+            "user": "",
+            "password": "",
+            "database": ""
+        }
+    },
+    "media": {
+        "staticDir": "./Public",
+        "icon": "./ServExpress/Media/favicon.ico"
+    }
+}
