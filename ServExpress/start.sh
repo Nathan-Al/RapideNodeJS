@@ -5,7 +5,7 @@
 #Lauch the server in devlopment mod or production
 
 ##Get the variable from .env
-export $(grep -v '^#' .env | xargs -d '\n')
+export $(grep -v '^#' ./ServExpress/configuration/.env | xargs -d '\n')
 
 if command -v node &> /dev/null; then
     if portExist=$(lsof -t -i:4445) || portExist=$(lsof -t -i:4445) ; then
@@ -16,9 +16,9 @@ if command -v node &> /dev/null; then
         "--- End ---"
     else
         if [ "$DEV" = true ]; then
-            nodemon ServExpress/index.js dev
+            nodemon --env-file=./ServExpress/configuration/.env ServExpress/index.js dev
         elif [ "$DEV" = false ]; then
-            node ServExpress/index.js
+            node --env-file=./ServExpress/configuration/.env ServExpress/index.js
         fi
     fi
 else
