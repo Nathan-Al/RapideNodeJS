@@ -24,18 +24,18 @@
                 </a>
             </div>
             <div class="navbar-menu" id="navMenu">
+                <div class="navbar-start">
+                    <a href="../../documentation/fr/index.html" class="navbar-item is-size-5 is-size-6-mobile">Documentation</a>
+                    <a href="./index.html" class="navbar-item is-size-5 is-size-6-mobile">Tutoriel</a>
+                </div>
                 <div class="navbar-end">
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">
                             Language
                         </a>
-
                         <div class="navbar-dropdown">
                             <a class="navbar-item">
                             French
-                            </a>
-                            <a class="navbar-item">
-                            English
                             </a>
                         </div>
                     </div>
@@ -50,11 +50,29 @@
                     <div class="div-navigation">
                         <aside class="ml-2 mt-2 is-size-6-widescreen is-size-6-fullhd">
                             <p class="menu-label">
-                                Exemple
+                                Tutoriel
                             </p>
                             <ul class="menu-list">
-                                <li><a href="#title-form" id="chp-inst">Les formulaire</a></li>
-                                <li><a href="#title-bdd" id="chp-inst">La base de données</a></li>
+                                <li>
+                                    <a href="#title-introduction">Introduction</a>
+                                </li>
+                                <li>
+                                    <a href="#title-control" id="chp-control">Les controleurs</a>
+                                    <ul>
+                                        <a href="#title-form" id="chp-form">Les formulaires</a>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#title-class" id="chp-classmod">Les Classes & Model</a>
+                                    <ul></ul>
+                                </li>
+                                <li>
+                                    <a href="#title-views" id="chp-views">Les Vues</a>
+                                    <ul>
+                                        <a href="#title-title-static" id="chp-medias">Utiliser les medias static</a>
+                                    </ul>
+                                </li>
+                                <li><a href="#title-bdd" id="chp-bdd">La base de donnée</a></li>
                             </ul>
                             </aside>
                     </div>
@@ -71,47 +89,49 @@
                         <div class="container-1 center">
                             <div class="container-2">
                                 <section class="section is-size-5 is-size-5-mobile">
+                                    <div class="anchor" id="title-introduction"></div>
                                     <p class="navbar-item title is-size-2 is-size-3-mobile center has-text-weight-medium">
-                                        Pour vous aidez
+                                        Introduction
                                     </p>
                                     <p>
-                                        Quand vous lancerai le serveur la première fois vous aurez une page de bienvenue.
-                                        Sur cette page vous aurez des informations concernant le serveur ainsi que le projet.
-                                        La dernière option vous permetra d'accéder a la page de test qui nous intéresse.
+                                        Nous verrons ici comment utiliser RapideNodeJS pour créer vos projets, vous trouverez pour chaque parties des explications avec des exemples de code pour faciliter vôtre compréhension.
+                                        <br>N’hésitez pas à tester les exemples en même temps que vous les lisez !
                                     </p>
                                     <hr>
                                     <div class="columns" id="doc-div">
                                         <div class="column">
                                             <div class="content">
-                                                <p>
-
-                                                </p>
-                                                <div class="anchor" id="title-form"></div>
-                                                <h1>Les formulaire</h1>
-                                                <p>
-                                                    Il existe deux type de methods HTTP, GET et POST dont les données sont récupérable par la variable `data`.
-                                                </p>
-                                                <div class="code-preview">
-                                                    <blockquote>
-                                                        <t class="text-is-green">#Le langage utiliser pour accéder au variable dand le html est EJS</t><br>
-                                                        &lt;<t class="text-is-blue">html</t>&gt;<br>
-                                                        &emsp;&lt;<t class="text-is-blue">p</t>&gt;<br>
-                                                        &emsp;&emsp;<%= <t class="text-is-blue">CR</t>.<t class="text-is-lightblue">weirdanswerPost</t> %><br>
-                                                        &emsp;&lt;<t class="text-is-blue">/p</t>&gt;<br>
-                                                        &emsp;&lt;<t class="text-is-blue">p</t>&gt;<br>
-                                                        &emsp;&emsp;<%=<t class="text-is-blue">CR</t>.<t class="text-is-lightblue">weirdanswerGet</t> %><br>
-                                                        &emsp;&lt;<t class="text-is-blue">/p</t>&gt;<br>
-                                                        &lt;<t class="text-is-blue">html</t>&gt;
-                                                    </blockquote>
-                                                    <blockquote>
-                                                        module.exports.Controller = async function Controller(serverDatas, serverObject) {<br>
-                                                        &emsp;serverObject.datas.weirdanswerAjax = typeof (JSON.parse(serverDatas.Post.data).text) != 'undefined' ? JSON.parse(serverDatas.Post.data).text : JSON.parse(serverDatas.Post.data).data<br>
-                                                        &emsp;serverObject.datas.weirdanswerPost = serverDatas.Post.openthedoor<br>
-                                                        &emsp;serverObject.datas.weirdanswerGet = serverDatas.Get.split('=')[1]<br>
-                                                        }<br>
-                                                        return serverObject;<br>
-                                                    </blockquote>
+                                                <div class="anchor" id="title-control"></div>
+                                                <h1>Les Controleurs</h1>
+                                                <div class="content">
+                                                    <p>
+                                                        Dans l’architecture MVC les contrôleurs sont la partie communicante avec le serveur. <br>
+                                                        Ils sont assez simples à utiliser car il ne nécessite l’utilisation que d’une simple fonction dans laquelle l'entièreté de vôtre code sera écrit. 
+                                                        Par défaut vous devrez retourner un objet avec tous les éléments que vous voulez afficher dans vôtre vue.
+                                                    </p>
                                                 </div>
+                                                <div class="anchor" id="title-form"></div>
+                                                <h2>Les formulaires</h2>
+                                                <div class="content">
+                                                    <p>
+                                                        Maintenant que nous avons vu comment utiliser les contrôleurs, voyons comment on peut utiliser des données envoyées par la vue.
+                                                        Il existe deux types de méthodes, GET et POST dont les données sont récupérables par la variable `data`. 
+                                                    </p>
+                                                    <div class="codepen-div">
+                                                        <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="js" data-slug-hash="zxxNxPY" data-pen-title="Tutoriel Controleur 1" data-user="Nathan-Al-the-builder" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+                                                            <span>See the Pen <a href="https://codepen.io/Nathan-Al-the-builder/pen/zxxNxPY">
+                                                            Tutoriel Controleur</a> by Nathan-Al (<a href="https://codepen.io/Nathan-Al-the-builder">@Nathan-Al-the-builder</a>)
+                                                            on <a href="https://codepen.io">CodePen</a>.</span>
+                                                          </p>
+                                                          <script async src="https://public.codepenassets.com/embed/index.js"></script>
+                                                    </div>
+                                                </div>
+                                                <div class="anchor" id="title-class"></div>
+                                                <h1>Les Classes & Model</h1>
+                                                <div class="anchor" id="title-views"></div>
+                                                <h1>Les Vues</h1>
+                                                <div class="anchor" id="title-static"></div>
+                                                <h2>Utiliser les medias static</h2>
                                                 <div class="anchor" id="title-bdd"></div>
                                                 <h1>La base de données</h1>
                                                 <p>
