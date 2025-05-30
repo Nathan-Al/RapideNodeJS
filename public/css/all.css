@@ -72,8 +72,20 @@ footer {
     color: #029fdd;
 }
 
+.text-is-function {
+    color: rgb(1, 8, 116)
+}
+
 .text-is-green {
     color: #35a335;
+}
+
+.text-is-red {
+    color: #b12a2a;
+}
+
+.text-is-bright-red {
+    color: #c40202;
 }
 
 /*                                   */

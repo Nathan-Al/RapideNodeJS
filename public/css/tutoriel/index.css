@@ -7,14 +7,12 @@ body {
     overflow: hidden;
 }
 
-.container-1
-{
+.container-1 {
     min-height: 50%;
     background-color: rgb(27, 27, 27);
 }
 
-.container-2
-{
+.container-2 {
     height: auto;
     background-color: rgb(226, 226, 226);
 }
@@ -25,5 +23,15 @@ body {
 }
 
 .code-preview blockquote {
+    height: 100%;
+}
+
+.codepen-div {
+    resize: vertical;
+    overflow: auto;
+    height: 40vh;
+}
+
+.codepen-div .cp_embed_wrapper {
     height: 100%;
 }

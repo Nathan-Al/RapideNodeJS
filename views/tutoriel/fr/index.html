@@ -57,9 +57,9 @@
                                     <a href="#title-introduction">Introduction</a>
                                 </li>
                                 <li>
-                                    <a href="#title-control" id="chp-control">Les controleurs</a>
+                                    <a href="#title-control" id="chp-control">Les Contrôleurs</a>
                                     <ul>
-                                        <a href="#title-form" id="chp-form">Les formulaires</a>
+                                        <a href="#title-form" id="chp-form">Les Formulaires</a>
                                     </ul>
                                 </li>
                                 <li>
@@ -69,10 +69,10 @@
                                 <li>
                                     <a href="#title-views" id="chp-views">Les Vues</a>
                                     <ul>
-                                        <a href="#title-title-static" id="chp-medias">Utiliser les medias static</a>
+                                        <a href="#title-title-static" id="chp-medias">Utiliser les medias statique</a>
                                     </ul>
                                 </li>
-                                <li><a href="#title-bdd" id="chp-bdd">La base de donnée</a></li>
+                                <li><a href="#title-bdd" id="chp-bdd">La base de données</a></li>
                             </ul>
                             </aside>
                     </div>
@@ -94,7 +94,7 @@
                                         Introduction
                                     </p>
                                     <p>
-                                        Nous verrons ici comment utiliser RapideNodeJS pour créer vos projets, vous trouverez pour chaque parties des explications avec des exemples de code pour faciliter vôtre compréhension.
+                                        Nous verrons ici comment utiliser <t class="text-is-blue is-capitalized has-text-weight-bold">RapideNodeJS</t> pour créer vos projets, vous trouverez pour chaque parties des explications avec des exemples de code pour faciliter vôtre compréhension.
                                         <br>N’hésitez pas à tester les exemples en même temps que vous les lisez !
                                     </p>
                                     <hr>
@@ -102,23 +102,84 @@
                                         <div class="column">
                                             <div class="content">
                                                 <div class="anchor" id="title-control"></div>
-                                                <h1>Les Controleurs</h1>
+                                                <h1>Les Contrôleurs</h1>
                                                 <div class="content">
                                                     <p>
-                                                        Dans l’architecture MVC les contrôleurs sont la partie communicante avec le serveur. <br>
-                                                        Ils sont assez simples à utiliser car il ne nécessite l’utilisation que d’une simple fonction dans laquelle l'entièreté de vôtre code sera écrit. 
-                                                        Par défaut vous devrez retourner un objet avec tous les éléments que vous voulez afficher dans vôtre vue.
+                                                        Dans l’architecture <t class="is-underlined">MVC</t> les contrôleurs sont la partie la plus importante pour le développeur.<br>
+                                                        Dans un contrôleur vous gérerez toutes la partie "réflexion" de vôtre site ou application, savoir comment les utiliser est primordial, mais ne vous inquiétez pas, leur utilisation est simple.<br>
+                                                        Dans chaque contrôleur (quand ils sont créés avec l'outil de création de page <t class="text-is-blue">Teta</t>) vous trouverez une fonction de base qui reçoit en paramètres les données envoyées par une vue.<br>
+                                                        Cette fonction s’appelle <t class="text-is-function">Controller</t> et malheureusement vous ne pourrez pas la renommer.<br>
+                                                        C’est dans cette fonction que vous écrirez la majorité de vôtre code, mais rien ne vous empêche d'écrire en dehors ou de faire référence à d'autres fichiers.<br>
+                                                        Par défaut la fonction <t class="text-is-function">Controller</t> vous devrez retourner l'objet $<t class="text-is-variable">serverObject</t> (que vous pouvez renommer si vous le voulez) qui contiendra tous les éléments que vous voulez afficher dans vôtre vue. Pour vous faciliter la vie n’oubliez pas de retourner un objet même si c’est juste une ligne de texte que vous voulez afficher.<br>
+                                                        Bien maintenant nous allons prendre un exemple pour expliquer la suite :
+                                                    </p>
+                                                    <div class="codepen-div">
+                                                        <p class="codepen" data-height="100%" data-theme-id="dark" data-default-tab="html" data-slug-hash="pvJvyKr" data-pen-title="Controleur 1" data-user="Nathan-Al-the-builder" style="height: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+                                                        <span>See the Pen <a href="https://codepen.io/Nathan-Al-the-builder/pen/pvJvyKr">
+                                                        Controleur 1</a> by Nathan-Al (<a href="https://codepen.io/Nathan-Al-the-builder">@Nathan-Al-the-builder</a>)
+                                                        on <a href="https://codepen.io">CodePen</a>.</span>
+                                                        </p>
+                                                        <script async src="https://public.codepenassets.com/embed/index.js"></script>
+                                                    </div>
+                                                    <h3>HTML</h3>
+                                                    <p>
+                                                        Dans la partie <t class="is-underlined">HTML</t> vous pouvez voir du <t class="is-underlined">HTML</t> classique mélanger avec du <t class="is-underlined">EJS</t>.<br>
+                                                        Le code EJS va se charger d’afficher nos données pour nous.<br>
+                                                        L’information qui nous intéresse se trouve justement dans les balise <t class="is-underlined">EJS</t> (<t class="text-is-orange"><%=</t> ou <t class="text-is-orange"><%</t> et <t class="text-is-orange">%></t>) vous avez surement remarquer qu’avant d'appeler l’objet envoyez nous appelons <t class="text-is-blue">CR</t>.<br>
+                                                        <t class="text-is-blue">CR</t> est juste l’acronyme de Controller (Contrôleur en français) et ce <t class="text-is-blue">CR</t> est l’objet principal qui est envoyé à la vue et qui contient tous les autres objets envoyés par le contrôleur.<br>
+                                                        Pour atteindre nos objets nous appelons donc en premier l'objet <t class="text-is-blue">CR</t> puis nôtre objet.<br>
+                                                        <blockquote>
+                                                            <%= <t class="text-is-variable">CR</t>.[ Nom de l’objet ] %>
+                                                        </blockquote>
+                                                    </p>
+                                                    <h3>JavaScript</h3>
+                                                    <p>
+                                                        Le code JavaScript est la partie qui nous intéresse le plus pour cet exemple.<br>
+                                                        dans la fonction Controller nous trouvons en paramètres $<t class="text-is-variable">serverDatas</t> et $<t class="text-is-variable">serverObject</t> :<br>
+                                                        - $<t class="text-is-variable">serverData</t> [ <t class="text-is-red">Object</t> ] : Contient les informations envoyées et GET et POST avec le nom de la page concernée<br>
+                                                        - $<t class="text-is-variable">serverObject</t> [ <t class="text-is-red">Object</t> ] : Contient l’objet $<t class="text-is-variable">datas</t> { <t class="text-is-red">empty</t> } et 
+                                                        - $<t class="text-is-variable">parameter</t> { persistence = <t class="text-is-red">bool</t>, urlRedirect = <t class="text-is-red">string</t>, useRedirect = <t class="text-is-red">bool</t> }<br>
+                                                        <t class="text-is-bright-red"><t class="is-underlined">C’est deux objets sont gérer par le serveur et ne doivent pas être modifiés directement.</t></t><br>
+                                                    </p>
+                                                    <p>
+                                                        $<t class="is-underlined"><t class="text-is-variable">serverObject</t></t> :<br>
+                                                        Dans l'exemple nous utilisons l'objet $<t class="text-is-variable">datas</t> de $<t class="text-is-variable">serverObject</t> pour envoyer à la vue les informations que nous voulons afficher.<br>
+                                                        $<t class="text-is-variable">date</t> = <t class="text-is-green">date</t>() : Est une simple fonction qui nous permet d’avoir la date avec l’heure.<br>
+                                                        $<t class="text-is-variable">simpleText</t> = 'Hello today date is ' : Est simplement une ligne de texte.<br>
+                                                        Comme vous pouvez le voir nous appelons $<t class="text-is-variable">serverObject</t>.<t class="text-is-variable">datas</t> et nous lui donnons la valeur qui nous intéresse en créant son nom pour l’affecter.<br>
+                                                    </p>
+                                                        <blockquote>
+                                                            $<t class="text-is-variable">serverObject</t>.<t class="text-is-variable">datas</t>.[ Nom de l’objet ] = valeur
+                                                        </blockquote>
+                                                    <p>
+                                                        Il nous suffit par la suite d'appeler c’est objet via <t class="text-is-blue">CR</t> dans la vue.
+                                                    </p>
+                                                        <blockquote>
+                                                            <%= <t class="text-is-variable">CR</t>.[ Nom de l’objet ] %>
+                                                        </blockquote>
+                                                    <p>
+                                                        $<t class="is-underlined"><t class="text-is-variable">serverData</t></t> :<br>
+                                                        Nous récupérons les informations envoyées d’une autre page par POST et GET en accédant à $<t class="text-is-variable">serverData</t> et nous les attribuons à de nouveaux objets pour ensuite les renvoyer par l’objet $<t class="text-is-variable">serverObject</t> a nôtre vue.
+                                                        Cela peut paraître inutile comme action mais c’est simplement parce que dans nôtre exemple aucun travail n’a été fait sur les données.<br>
+                                                        Comme on peut le voir a la fin l’objet $<t class="text-is-variable">serverObject</t> est retourné comme objet final.<br>
+                                                        On pourrait alors se demander que fait ton de $<t class="text-is-variable">serverData</t> ? Comme nous n’avons (normalement) pas modifier cet objet mais les objets qu’il contient nous n’avons pas besoin de le retourner, le serveur le prendra en compte automatiquement.
+                                                    </p>
+                                                    <p>
+                                                        Dans l’exemple nous utilisons un <t class="text-is-function">console</t>.<t class="text-is-function">log</t> pour afficher les données que nous envoyons afin de faire du debug simple.
+                                                        Si vous avez lancé le projet depuis un <t class="is-underlined">CMD</t> vous pourrez voir vos données s’afficher dans le <t class="is-underlined">CMD</t>.<br>
+                                                        Afin de voir toutes les possibilités n'hésitez pas à faire vos propres tests et essais.
                                                     </p>
                                                 </div>
+<!-- ------ -->
                                                 <div class="anchor" id="title-form"></div>
-                                                <h2>Les formulaires</h2>
+                                                <h2>Les Formulaires</h2>
                                                 <div class="content">
                                                     <p>
                                                         Maintenant que nous avons vu comment utiliser les contrôleurs, voyons comment on peut utiliser des données envoyées par la vue.
                                                         Il existe deux types de méthodes, GET et POST dont les données sont récupérables par la variable `data`. 
                                                     </p>
                                                     <div class="codepen-div">
-                                                        <p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="js" data-slug-hash="zxxNxPY" data-pen-title="Tutoriel Controleur 1" data-user="Nathan-Al-the-builder" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+                                                        <p class="codepen" data-height="100%" data-theme-id="dark" data-default-tab="js" data-slug-hash="zxxNxPY" data-pen-title="Tutoriel Controleur 1" data-user="Nathan-Al-the-builder" style="height: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
                                                             <span>See the Pen <a href="https://codepen.io/Nathan-Al-the-builder/pen/zxxNxPY">
                                                             Tutoriel Controleur</a> by Nathan-Al (<a href="https://codepen.io/Nathan-Al-the-builder">@Nathan-Al-the-builder</a>)
                                                             on <a href="https://codepen.io">CodePen</a>.</span>
