@@ -1,4 +1,4 @@
-const sqlite = require('sqlite-sync');
+// const sqlite = require('sqlite-sync'); TODO remove deprecated package and instance
 const sqlite3 = require('sqlite3');
 // ----------------------------
 const sqliteVersion = parseInt(process.env.SQLITE_VERSION, 10)
